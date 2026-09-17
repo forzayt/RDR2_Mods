@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import Hls from "hls.js";
 import { Moon, Search, Sun, Upload } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const featuredVideoUrl = "https://rumble.com/hls-vod/vXOI5btQ6rU/playlist.m3u8";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,26 @@ const getGitHubUser = (url: string) => {
 function Index() {
   const [dark, setDark] = useState(false);
   const [query, setQuery] = useState("");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(featuredVideoUrl);
+      hls.attachMedia(video);
+      return () => {
+        hls.destroy();
+      };
+    }
+
+    // Safari natively supports HLS
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = featuredVideoUrl;
+    }
+  }, []);
 
   const visibleMods = useMemo(() => {
     if (!query.trim()) return mods;
@@ -74,18 +95,14 @@ function Index() {
         <main className="mx-auto max-w-7xl px-4 pb-20 pt-5 sm:px-6 sm:pt-6">
           <section className="rise relative min-h-[410px] overflow-hidden rounded-xl ring-1 ring-border sm:min-h-[420px]">
             <video
-                
+                ref={videoRef}
+                // muted
                 loop
                 preload="auto"
                 playsInline
                 autoPlay
                 className="absolute inset-0 h-full w-full object-cover"
-              >
-                <source
-                  src={featuredVideoUrl}
-                  type="video/mp4"
-                />
-              </video>
+              />
             <div className="absolute inset-0 bg-gradient-to-t from-hero/80 via-hero/15 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-7">
               <div className="max-w-2xl min-w-0">
