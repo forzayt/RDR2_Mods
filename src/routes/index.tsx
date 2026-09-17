@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import Hls from "hls.js";
-import { Moon, Search, Sun, Upload } from "lucide-react";
+import { Moon, Search, Sun, Upload, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const featuredVideoUrl = "https://rumble.com/hls-vod/vXOI5btQ6rU/playlist.m3u8";
@@ -35,6 +35,7 @@ function Index() {
   const [dark, setDark] = useState(false);
   const [query, setQuery] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -103,6 +104,20 @@ function Index() {
                 autoPlay
                 className="absolute inset-0 h-full w-full object-cover"
               />
+            <button
+              onClick={() => {
+                setMuted((m) => {
+                  const next = !m;
+                  if (videoRef.current) videoRef.current.muted = next;
+                  return next;
+                });
+              }}
+              aria-label={muted ? "Unmute video" : "Mute video"}
+              title={muted ? "Unmute" : "Mute"}
+              className="absolute right-3 top-3 z-10 flex size-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-[background-color,transform] hover:bg-black/60 active:scale-[0.96]"
+            >
+              {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+            </button>
             <div className="absolute inset-0 bg-gradient-to-t from-hero/80 via-hero/15 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-7">
               <div className="max-w-2xl min-w-0">
