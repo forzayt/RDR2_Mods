@@ -184,7 +184,7 @@ function Index() {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted ring-1 ring-border">
                     <img
-                      src={mod.thumbnail}
+                      src={mod.thumbnail || `https://github.com/${getGitHubUser(mod.url)}.png?size=400`}
                       alt={`${mod.title} mod preview`}
                       width={912}
                       height={736}
