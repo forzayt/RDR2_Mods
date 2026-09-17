@@ -85,49 +85,56 @@ export function Navbar({
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <a href="/#catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" className="w-full cursor-pointer">
+                    <Compass className="mr-2 size-4" />
                     Featured Mods
-                  </a>
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Explore Dropdown */}
+            {/* Explore / Catalog Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/80 transition-all hover:bg-accent hover:text-foreground">
+                <button
+                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
+                    isActive("/catalog") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
+                  }`}
+                >
                   Explore
                   <ChevronDown className="size-3.5 opacity-70" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-48 rounded-2xl shadow-xl">
                 <DropdownMenuItem asChild>
-                  <a href="/#catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" className="w-full cursor-pointer">
                     <Compass className="mr-2 size-4" />
-                    All Mods
-                  </a>
+                    All Catalog Mods
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <a href="/#catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" className="w-full cursor-pointer">
                     RedM Scripts
-                  </a>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <a href="/#catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" className="w-full cursor-pointer">
                     Single Player
-                  </a>
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Activity */}
-            <a
-              href="/#catalog"
-              className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/80 transition-all hover:bg-accent hover:text-foreground"
+            {/* Activity Link */}
+            <Link
+              to="/activity"
+              className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
+                isActive("/activity") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
+              }`}
             >
               Activity
-            </a>
+            </Link>
 
             {/* Pages Dropdown */}
             <DropdownMenu>
@@ -139,11 +146,24 @@ export function Navbar({
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-48 rounded-2xl shadow-xl">
                 <DropdownMenuItem asChild>
+                  <Link to="/catalog" className="w-full cursor-pointer">
+                    <Compass className="mr-2 size-4" />
+                    Catalog Directory
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link to="/upload" className="w-full cursor-pointer">
                     <Upload className="mr-2 size-4" />
                     Upload Mod
                   </Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/contact" className="w-full cursor-pointer">
+                    <MessageSquare className="mr-2 size-4" />
+                    Contact & FAQ
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <a
                     href="https://github.com/forzayt/RDR2_Mods"
@@ -158,15 +178,15 @@ export function Navbar({
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Contact */}
-            <a
-              href="https://github.com/forzayt/RDR2_Mods/issues"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/80 transition-all hover:bg-accent hover:text-foreground"
+            {/* Contact Link */}
+            <Link
+              to="/contact"
+              className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
+                isActive("/contact") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
+              }`}
             >
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
 
@@ -291,22 +311,22 @@ export function Navbar({
               <Home className="size-4 text-primary" />
               Home
             </Link>
-            <a
-              href="/#catalog"
+            <Link
+              to="/catalog"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-medium hover:bg-accent"
             >
               <Compass className="size-4" />
-              Explore Mods
-            </a>
-            <a
-              href="/#catalog"
+              Catalog & Mods
+            </Link>
+            <Link
+              to="/activity"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-medium hover:bg-accent"
             >
               <ActivityIcon className="size-4" />
-              Activity
-            </a>
+              Activity Feed
+            </Link>
             <Link
               to="/upload"
               onClick={() => setMobileMenuOpen(false)}
@@ -315,16 +335,14 @@ export function Navbar({
               <Upload className="size-4" />
               Upload Mod
             </Link>
-            <a
-              href="https://github.com/forzayt/RDR2_Mods/issues"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-medium hover:bg-accent"
             >
               <MessageSquare className="size-4" />
               Contact & Support
-            </a>
+            </Link>
           </div>
         </div>
       )}
