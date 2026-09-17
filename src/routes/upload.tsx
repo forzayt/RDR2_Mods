@@ -115,7 +115,6 @@ function UploadMod() {
 
     const formData = new FormData(event.currentTarget);
     const title = String(formData.get("title") ?? "").trim();
-    const summary = String(formData.get("summary") ?? "").trim();
     const description = String(formData.get("description") ?? "").trim();
     const repositoryUrl = String(formData.get("repositoryUrl") ?? "").trim();
     const tag = String(formData.get("tag") ?? "").trim();
@@ -124,11 +123,6 @@ function UploadMod() {
 
     if (title.length < 3) {
       setFormError("Mod title must be at least 3 characters.");
-      return;
-    }
-
-    if (summary.length < 10) {
-      setFormError("Short summary must be at least 10 characters.");
       return;
     }
 
@@ -154,7 +148,6 @@ function UploadMod() {
       const result = await submitModIssue({
         data: {
           title,
-          summary,
           description,
           repositoryUrl,
           tag,
@@ -261,19 +254,6 @@ function UploadMod() {
                 />
               </div>
 
-              <div className="space-y-2 sm:col-span-2">
-                <Label htmlFor="summary">Short summary</Label>
-                <Input
-                  id="summary"
-                  name="summary"
-                  required
-                  minLength={10}
-                  maxLength={140}
-                  placeholder="What makes this mod worth installing?"
-                  className={fieldClass}
-                />
-                <p className="text-xs text-muted-foreground">10–140 characters.</p>
-              </div>
 
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="description">Description</Label>
