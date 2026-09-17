@@ -88,7 +88,7 @@ const categoryCards = [
   },
 ];
 
-const guideHighlights = [
+const setupGuides = [
   {
     title: "Script Hook RDR2 Setup",
     desc: "Step-by-step guide to installing Alexander Blade's Script Hook and dinput8.dll ASI loader.",
