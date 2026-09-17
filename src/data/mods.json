@@ -1,0 +1,10 @@
+[
+  {"id":"engraved-cattleman","title":"Engraved Cattleman","category":"Weapons","author":"Ash Hollow","rating":4.7,"downloads":62100,"updated":"2026-02-03","image":"revolver","verified":true,"featured":false},
+  {"id":"dapple-grey-mare","title":"Dapple Grey Mare","category":"Horses","author":"Corral & Co.","rating":4.8,"downloads":41900,"updated":"2026-01-28","image":"mare","verified":true,"featured":false},
+  {"id":"lantern-main-street","title":"Lantern Main Street","category":"Towns","author":"Dry Gulch","rating":4.6,"downloads":88700,"updated":"2026-02-06","image":"town","verified":true,"featured":false},
+  {"id":"the-worn-duster","title":"The Worn Duster","category":"Characters","author":"Iron Range","rating":4.9,"downloads":129400,"updated":"2026-02-08","image":"duster","verified":true,"featured":false},
+  {"id":"fogbound-canyon","title":"Fogbound Canyon","category":"Landscapes","author":"Meridian Forge","rating":4.5,"downloads":23600,"updated":"2026-01-21","image":"canyon","verified":false,"featured":false},
+  {"id":"riflemans-rack","title":"Rifleman's Rack","category":"Weapons","author":"Ash Hollow","rating":4.4,"downloads":17300,"updated":"2026-02-01","image":"rifles","verified":true,"featured":false},
+  {"id":"mill-covered-bridge","title":"Mill & Covered Bridge","category":"Towns","author":"Dry Gulch","rating":4.7,"downloads":55800,"updated":"2026-01-30","image":"bridge","verified":true,"featured":false},
+  {"id":"black-stallion","title":"Black Stallion","category":"Horses","author":"Corral & Co.","rating":4.8,"downloads":73200,"updated":"2026-02-07","image":"stallion","verified":true,"featured":false}
+]
