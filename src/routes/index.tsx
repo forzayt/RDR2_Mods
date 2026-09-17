@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Moon, Search, SlidersHorizontal, Sun } from "lucide-react";
+import { Check, Moon, Search, SlidersHorizontal, Sun, Upload } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import featuredImage from "@/assets/featured-ridge.jpg";
@@ -84,6 +84,10 @@ function Index() {
                 <Search className="size-4 text-muted-foreground" aria-hidden="true" />
                 <input aria-label="Search mods" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search mods" className="w-32 bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
               </label>
+              <Button size="compact" className="transition-[color,background-color,transform] active:scale-[0.96]" aria-label="Upload mod">
+                <Upload className="size-3.5" aria-hidden="true" />
+                <span className="hidden sm:inline">Upload mod</span>
+              </Button>
               <Button variant="ghost" size="icon" onClick={() => setDark((value) => !value)} aria-label={dark ? "Switch to day mode" : "Switch to night mode"} title={dark ? "Day mode" : "Night mode"}>
                 {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
               </Button>
