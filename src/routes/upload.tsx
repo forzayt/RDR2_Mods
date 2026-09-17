@@ -19,8 +19,8 @@ import { submitModIssue } from "@/server-functions/submit-mod";
 export const Route = createFileRoute("/upload")({
   head: () => ({
     meta: [
-      { title: "Upload a Mod | Saddle Market" },
-      { name: "description", content: "Submit a Red Dead Redemption 2 mod to Saddle Market." },
+      { title: "Upload a Mod | RDR2 Mods" },
+      { name: "description", content: "Submit a Red Dead Redemption 2 mod to RDR2 Mods." },
     ],
   }),
   component: UploadMod,
@@ -167,7 +167,7 @@ function UploadMod() {
       <header className="sticky top-0 z-30 border-b border-border bg-surface-glass backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
           <Link to="/" className="font-display text-2xl text-foreground">
-            SADDLE<span className="text-primary">·</span>MARKET
+            RDR2<span className="text-primary">·</span>Mods
           </Link>
           <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
           <span className="hidden font-cond text-sm uppercase text-muted-foreground sm:block">

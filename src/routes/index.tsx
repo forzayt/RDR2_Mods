@@ -9,9 +9,9 @@ import mods from "@/data/mods.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Saddle Market | RDR2 Mods" },
+      { title: "RDR2 Mods" },
       { name: "description", content: "Discover the best community-made mods for Red Dead Redemption 2." },
-      { property: "og:title", content: "Saddle Market | RDR2 Mods" },
+      { property: "og:title", content: "RDR2 Mods" },
       { property: "og:description", content: "Discover the best community-made mods for Red Dead Redemption 2." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -51,7 +51,7 @@ function Index() {
         <header className="sticky top-0 z-30 border-b border-border bg-surface-glass backdrop-blur-xl">
           <div className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:flex sm:px-6">
             <a href="#catalog" className="font-display text-2xl text-foreground">
-              SADDLE<span className="text-primary">·</span>MARKET
+              RDR2<span className="text-primary">·</span>Mods
             </a>
             <div className="flex shrink-0 items-center gap-2 sm:ml-auto">
               <label className="hidden h-9 items-center gap-2 rounded-full bg-surface-glass px-3 ring-1 ring-border md:flex">
@@ -147,8 +147,8 @@ function Index() {
           </section>
 
           <footer className="mt-16 flex flex-col gap-2 border-t border-border pt-5 font-cond text-sm uppercase text-muted-foreground sm:flex-row sm:items-center">
-            <span className="font-display text-xl text-foreground">SADDLE<span className="text-primary">·</span>MARKET</span>
-            <span>Community-made RDR2 mods</span><span className="sm:ml-auto">Catalog powered by local JSON</span>
+            <span className="font-display text-xl text-foreground">RDR2<span className="text-primary">·</span>Mods</span>
+            <span>Community-made RDR2 mods</span><span className="sm:ml-auto">Catalog powered by community</span>
           </footer>
         </main>
       </div>

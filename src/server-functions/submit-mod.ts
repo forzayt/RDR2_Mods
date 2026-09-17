@@ -147,7 +147,7 @@ export const submitModIssue = createServerFn({ method: "POST" })
       data.description,
       "",
       "---",
-      "Submitted through the Saddle Market upload form.",
+      "Submitted through the RDR2 Mods upload form.",
     ].join("\n");
 
     const issueResponse = await fetch(

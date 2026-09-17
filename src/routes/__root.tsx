@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Saddle Market | RDR2 Mods" },
+      { title: "RDR2 Mods" },
       { name: "description", content: "Browse community-made mods for Red Dead Redemption 2." },
-      { name: "author", content: "Saddle Market" },
-      { property: "og:title", content: "Saddle Market | RDR2 Mods" },
+      { name: "author", content: "RDR2 Mods" },
+      { property: "og:title", content: "RDR2 Mods" },
       { property: "og:description", content: "Browse community-made mods for Red Dead Redemption 2." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
