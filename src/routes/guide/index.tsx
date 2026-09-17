@@ -11,7 +11,7 @@ export const Route = createFileRoute("/guide/")({
       description: "Step-by-step installation guides and troubleshooting tutorials for Red Dead Redemption 2 PC modding, Script Hook RDR2, Lenny Mod Loader, and RedM multiplayer.",
       keywords: ["RDR2 Modding Guides", "Script Hook Installation", "LML Tutorial", "RedM Server Setup", "RDR2 ReShade Guide"],
       path: "/guide",
-      image: "/rdr2modslg.png",
+      image: "/banner.png",
       jsonLd: [
         SchemaOrg.breadcrumb([
           { name: "Home", item: "/" },

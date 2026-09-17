@@ -17,6 +17,7 @@ import { Route as DmcaRouteImport } from './routes/dmca'
 import { Route as GuidelinesRouteImport } from './routes/guidelines'
 import { Route as LicenseRouteImport } from './routes/license'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ReportRouteImport } from './routes/report'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UploadRouteImport } from './routes/upload'
 import { Route as GuideIndexRouteImport } from './routes/guide/index'
@@ -65,6 +66,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportRoute = ReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/guidelines': typeof GuidelinesRoute
   '/license': typeof LicenseRoute
   '/privacy': typeof PrivacyRoute
+  '/report': typeof ReportRoute
   '/terms': typeof TermsRoute
   '/upload': typeof UploadRoute
   '/guide/lml': typeof GuideLmlRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/guidelines': typeof GuidelinesRoute
   '/license': typeof LicenseRoute
   '/privacy': typeof PrivacyRoute
+  '/report': typeof ReportRoute
   '/terms': typeof TermsRoute
   '/upload': typeof UploadRoute
   '/guide/lml': typeof GuideLmlRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/guidelines': typeof GuidelinesRoute
   '/license': typeof LicenseRoute
   '/privacy': typeof PrivacyRoute
+  '/report': typeof ReportRoute
   '/terms': typeof TermsRoute
   '/upload': typeof UploadRoute
   '/guide/lml': typeof GuideLmlRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/guidelines'
     | '/license'
     | '/privacy'
+    | '/report'
     | '/terms'
     | '/upload'
     | '/guide/lml'
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/guidelines'
     | '/license'
     | '/privacy'
+    | '/report'
     | '/terms'
     | '/upload'
     | '/guide/lml'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/guidelines'
     | '/license'
     | '/privacy'
+    | '/report'
     | '/terms'
     | '/upload'
     | '/guide/lml'
@@ -216,6 +228,7 @@ export interface RootRouteChildren {
   GuidelinesRoute: typeof GuidelinesRoute
   LicenseRoute: typeof LicenseRoute
   PrivacyRoute: typeof PrivacyRoute
+  ReportRoute: typeof ReportRoute
   TermsRoute: typeof TermsRoute
   UploadRoute: typeof UploadRoute
   GuideLmlRoute: typeof GuideLmlRoute
@@ -283,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/report': {
+      id: '/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof ReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -344,6 +364,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuidelinesRoute: GuidelinesRoute,
   LicenseRoute: LicenseRoute,
   PrivacyRoute: PrivacyRoute,
+  ReportRoute: ReportRoute,
   TermsRoute: TermsRoute,
   UploadRoute: UploadRoute,
   GuideLmlRoute: GuideLmlRoute,

@@ -16,6 +16,7 @@ import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingGithub } from "@/components/FloatingGithub";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 function NotFoundComponent() {
   const [dark, setDark] = useState(true);
@@ -148,7 +149,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       description: "Discover, download, and share community-made Red Dead Redemption 2 single player mods, Script Hook scripts, LML packages, and RedM server tools.",
       keywords: ["RDR2 Mods", "Red Dead Redemption 2 Mods", "Script Hook RDR2", "Lenny Mod Loader", "RedM Scripts", "RDR2 Trainers"],
       path: "/",
-      image: "/rdr2modslg.png",
+      image: "/banner.png",
       jsonLd: [SchemaOrg.website(), SchemaOrg.organization()],
     });
 
@@ -199,6 +200,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <FloatingGithub />
+      <ScrollToTop />
     </QueryClientProvider>
   );
 }

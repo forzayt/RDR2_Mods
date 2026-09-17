@@ -343,7 +343,7 @@ function UploadMod() {
                               onChange={() => setSelectedCategory(cat.value)}
                               className="sr-only"
                             />
-                            <span>{cat.label}</span>
+                            {cat.label}
                           </div>
                           {selectedCategory === cat.value && <CheckCircle2 className="size-3.5 text-primary" />}
                         </label>

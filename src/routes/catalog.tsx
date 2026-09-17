@@ -1,4 +1,4 @@
-import { Link, useNavigate, createFileRoute } from "@tanstack/react-router";
+import { Link, useNavigate, createFileRoute, useSearch } from "@tanstack/react-router";
 import {
   Bookmark,
   Check,
@@ -39,16 +39,30 @@ const catalogCategories = [
   { id: "outfits", label: "Outfits & Character" },
   { id: "vehicles", label: "Horses & Vehicles" },
   { id: "weapons", label: "Weapons & Arsenal" },
+  { id: "tools", label: "Modding Utilities" },
 ];
 
+interface CatalogSearch {
+  category?: string;
+  search?: string;
+  query?: string;
+}
+
 export const Route = createFileRoute("/catalog")({
+  validateSearch: (search: Record<string, unknown>): CatalogSearch => {
+    return {
+      category: typeof search.category === "string" ? search.category : undefined,
+      search: typeof search.search === "string" ? search.search : undefined,
+      query: typeof search.query === "string" ? search.query : undefined,
+    };
+  },
   head: () =>
     generateSeoMeta({
       title: "RDR2 Mods Catalog - Single Player Scripts, RedM & Loaders",
       description: "Filter and explore Red Dead Redemption 2 single player scripts, ASI trainers, LML replacement files, ReShade presets, and RedM server tools.",
       keywords: ["RDR2 Mod Catalog", "RDR2 Mods Download", "Red Dead Redemption 2 Mod List", "Script Hook Mods", "LML Mods Directory"],
       path: "/catalog",
-      image: "/rdr2modslg.png",
+      image: "/banner.png",
       jsonLd: [
         SchemaOrg.dataCatalog(),
         SchemaOrg.breadcrumb([
@@ -72,17 +86,13 @@ const getGitHubUser = (url: string) => {
 
 function CatalogPage() {
   const navigate = useNavigate();
+  const searchParams = useSearch({ from: "/catalog" });
+
   const [dark, setDark] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("search") || params.get("query") || "";
-    }
-    return "";
-  });
+  const [searchQuery, setSearchQuery] = useState(searchParams.search || searchParams.query || "");
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.category || "all");
   const [sortBy, setSortBy] = useState<"latest" | "stars" | "title">("latest");
   const [timeFilter, setTimeFilter] = useState<"all" | "month" | "week">("all");
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [starCounts, setStarCounts] = useState<Record<string, number>>({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,16 +103,32 @@ function CatalogPage() {
     thumbnail?: string;
   } | null>(null);
 
-  // Sync searchQuery when URL query parameter changes
+  // Synchronize category & query state whenever route search params change
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const urlQuery = params.get("search") || params.get("query");
-      if (urlQuery) {
-        setSearchQuery(urlQuery);
-      }
+    if (searchParams.category) {
+      setSelectedCategory(searchParams.category);
+    } else {
+      setSelectedCategory("all");
     }
-  }, []);
+
+    const q = searchParams.search || searchParams.query;
+    if (q !== undefined) {
+      setSearchQuery(q);
+    }
+  }, [searchParams.category, searchParams.search, searchParams.query]);
+
+  // Handler for category selection that updates both local state and URL query param
+  const handleCategorySelect = (catId: string) => {
+    setSelectedCategory(catId);
+    navigate({
+      to: "/catalog",
+      search: (prev) => ({
+        ...prev,
+        category: catId === "all" ? undefined : catId,
+      }),
+      replace: true,
+    });
+  };
 
   // Local storage persisted state for favorites
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -177,7 +203,7 @@ function CatalogPage() {
 
   const reportMod = (modTitle: string) => {
     showToast("Opening report page...");
-    navigate({ to: "/contact", search: { subject: `Report: ${modTitle}` } as any });
+    navigate({ to: "/report", search: { mod: modTitle } as any });
   };
 
   const filteredMods = useMemo(() => {
@@ -191,16 +217,96 @@ function CatalogPage() {
 
         const matchesFav = !favoritesOnly || favorites.includes(mod.url);
 
-        const modTag = mod.tag ? mod.tag.toLowerCase() : "";
-        const matchesCategory =
-          selectedCategory === "all" ||
-          (selectedCategory === "sp" && (modTag === "sp" || modTag.includes("single"))) ||
-          (selectedCategory === "redm" && modTag.includes("redm")) ||
-          (selectedCategory === "graphics" && (modTag.includes("graphic") || modTag.includes("reshade") || modTag.includes("enb"))) ||
-          (selectedCategory === "outfits" && (modTag.includes("outfit") || modTag.includes("character") || modTag.includes("model"))) ||
-          (selectedCategory === "vehicles" && (modTag.includes("vehicle") || modTag.includes("horse") || modTag.includes("train"))) ||
-          (selectedCategory === "weapons" && (modTag.includes("weapon") || modTag.includes("gun"))) ||
-          modTag === selectedCategory.toLowerCase();
+        const modTag = (mod.tag || "").toLowerCase();
+        const title = (mod.title || "").toLowerCase();
+        const summary = (mod.summary || "").toLowerCase();
+
+        let matchesCategory = false;
+        if (selectedCategory === "all") {
+          matchesCategory = true;
+        } else if (selectedCategory === "sp") {
+          matchesCategory =
+            modTag === "sp" ||
+            modTag.includes("single") ||
+            modTag.includes("asi") ||
+            modTag.includes("lml") ||
+            title.includes("hook") ||
+            title.includes("asi") ||
+            title.includes("lml") ||
+            title.includes("trainer") ||
+            title.includes("single");
+        } else if (selectedCategory === "redm") {
+          matchesCategory =
+            modTag.includes("redm") ||
+            title.includes("redm") ||
+            title.includes("vorp") ||
+            title.includes("redem") ||
+            title.includes("qbr") ||
+            title.includes("rsg") ||
+            title.includes("job") ||
+            title.includes("script");
+        } else if (selectedCategory === "graphics") {
+          matchesCategory =
+            modTag.includes("graphic") ||
+            modTag.includes("reshade") ||
+            modTag.includes("enb") ||
+            modTag.includes("visual") ||
+            title.includes("reshade") ||
+            title.includes("graphic") ||
+            title.includes("texture") ||
+            title.includes("screen") ||
+            title.includes("visual") ||
+            summary.includes("graphics") ||
+            summary.includes("reshade");
+        } else if (selectedCategory === "outfits") {
+          matchesCategory =
+            modTag.includes("outfit") ||
+            modTag.includes("character") ||
+            modTag.includes("model") ||
+            modTag.includes("player") ||
+            title.includes("outfit") ||
+            title.includes("skin") ||
+            title.includes("ped") ||
+            title.includes("clothes") ||
+            summary.includes("outfit");
+        } else if (selectedCategory === "vehicles") {
+          matchesCategory =
+            modTag.includes("vehicle") ||
+            modTag.includes("horse") ||
+            modTag.includes("train") ||
+            title.includes("car") ||
+            title.includes("vehicle") ||
+            title.includes("horse") ||
+            title.includes("wagon") ||
+            title.includes("boat") ||
+            title.includes("delivery");
+        } else if (selectedCategory === "weapons") {
+          matchesCategory =
+            modTag.includes("weapon") ||
+            modTag.includes("gun") ||
+            modTag.includes("arsenal") ||
+            title.includes("weapon") ||
+            title.includes("gun") ||
+            title.includes("knife") ||
+            title.includes("ammo") ||
+            title.includes("treasure");
+        } else if (selectedCategory === "tools") {
+          matchesCategory =
+            modTag.includes("tool") ||
+            modTag.includes("utility") ||
+            modTag.includes("loader") ||
+            modTag.includes("hook") ||
+            title.includes("tool") ||
+            title.includes("loader") ||
+            title.includes("manager") ||
+            title.includes("menu") ||
+            title.includes("info") ||
+            title.includes("template") ||
+            title.includes("mcp") ||
+            summary.includes("loader");
+        } else {
+          matchesCategory = modTag === selectedCategory.toLowerCase();
+        }
 
         return matchesQuery && matchesFav && matchesCategory;
       })
@@ -270,7 +376,7 @@ function CatalogPage() {
                     <button
                       key={cat.id}
                       type="button"
-                      onClick={() => setSelectedCategory(cat.id)}
+                      onClick={() => handleCategorySelect(cat.id)}
                       className={`rounded-xl px-3.5 py-2 text-xs font-semibold transition-all active:scale-[0.96] cursor-pointer ${
                         isActive
                           ? "border border-primary bg-primary/10 text-primary shadow-sm"
@@ -534,7 +640,7 @@ function CatalogPage() {
                     className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-border/80 bg-card px-4 text-xs font-semibold text-foreground transition-all hover:bg-accent hover:border-primary/50 disabled:pointer-events-none disabled:opacity-40 active:scale-[0.96] shadow-sm cursor-pointer"
                   >
                     <ChevronLeft className="size-4 shrink-0" />
-                    <span>Previous</span>
+                    Previous
                   </button>
 
                   <div className="flex items-center gap-1.5">
@@ -560,7 +666,7 @@ function CatalogPage() {
                     disabled={currentPage === totalPages}
                     className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-border/80 bg-card px-4 text-xs font-semibold text-foreground transition-all hover:bg-accent hover:border-primary/50 disabled:pointer-events-none disabled:opacity-40 active:scale-[0.96] shadow-sm cursor-pointer"
                   >
-                    <span>Next</span>
+                    Next
                     <ChevronRight className="size-4 shrink-0" />
                   </button>
                 </div>
@@ -573,7 +679,7 @@ function CatalogPage() {
         {toastMessage && (
           <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full border border-border/80 bg-card/95 px-4 py-2.5 text-xs font-semibold text-foreground shadow-xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-3 duration-200">
             <Check className="size-4 text-primary" />
-            <span>{toastMessage}</span>
+            {toastMessage}
           </div>
         )}
 
@@ -627,7 +733,7 @@ function CatalogPage() {
                   }}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-border/80 bg-background px-5 py-2.5 text-xs font-semibold text-foreground transition-all hover:bg-accent active:scale-[0.96] cursor-pointer"
                 >
-                  <span>Re-open GitHub Repository</span>
+                  Re-open GitHub Repository
                   <ExternalLink className="size-3.5" />
                 </button>
 

@@ -105,23 +105,28 @@ export function Navbar({
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-52 rounded-2xl shadow-xl">
                 <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" search={{ category: "sp" }} className="w-full cursor-pointer">
                     Single Player (ASI/LML)
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" search={{ category: "redm" }} className="w-full cursor-pointer">
                     RedM Server Scripts
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" search={{ category: "graphics" }} className="w-full cursor-pointer">
                     Graphics & Reshade
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
+                  <Link to="/catalog" search={{ category: "outfits" }} className="w-full cursor-pointer">
                     Outfits & Character
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/catalog" search={{ category: "tools" }} className="w-full cursor-pointer">
+                    Modding Utilities
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

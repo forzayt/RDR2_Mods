@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { AnimatedContent } from "@/components/reactbits/AnimatedContent";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
@@ -50,17 +51,17 @@ const categoryCards = [
     id: "sp",
     title: "Single Player Mods",
     desc: "ASI scripts, trainers, gameplay balance & immersion tweaks.",
-    path: "/catalog?category=sp",
+    categoryParam: "sp",
     tagMatch: "sp",
     accent: "from-amber-500/10 to-transparent border-amber-500/30 text-amber-500",
     image: "/NicePng_red-beard-png_1934462.png",
-    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[50%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity",
+    imageClass: "absolute right-0 bottom-0 h-28 sm:h-36 max-w-[42%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity scale-90 origin-bottom-right",
   },
   {
     id: "redm",
     title: "RedM Server Scripts",
     desc: "Lua scripts, server frameworks & multiplayer resources.",
-    path: "/catalog?category=redm",
+    categoryParam: "redm",
     tagMatch: "redm",
     accent: "from-rose-500/10 to-transparent border-rose-500/30 text-rose-500",
     image: "/red-dead-online-blood-money-artwork-png.png",
@@ -70,18 +71,18 @@ const categoryCards = [
     id: "tools",
     title: "Modding Utilities",
     desc: "Script Hook, LML, mod managers & core engine loaders.",
-    path: "/catalog?category=tools",
+    categoryParam: "tools",
     tagMatch: "tools",
     accent: "from-sky-500/10 to-transparent border-sky-500/30 text-sky-500",
     image: "/RedDeadOnline_Artwork_BountyHunter_Expansion_Character_PNG_Transparent.png",
-    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[50%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity",
+    imageClass: "absolute right-0 bottom-0 h-28 sm:h-36 max-w-[42%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity scale-90 origin-bottom-right",
   },
   {
-    id: "visuals",
+    id: "graphics",
     title: "Graphics & Visuals",
     desc: "ReShade presets, texture mods, weapons & weather enhancements.",
-    path: "/catalog?category=visuals",
-    tagMatch: "visuals",
+    categoryParam: "graphics",
+    tagMatch: "graphics",
     accent: "from-emerald-500/10 to-transparent border-emerald-500/30 text-emerald-500",
     image: "/RedDeadOnline_Artwork_Standalone_Characters_PNG_Transparent.png",
     imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[55%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity scale-115 origin-bottom-right",
@@ -132,7 +133,7 @@ export const Route = createFileRoute("/")({
         "RDR2 Mod Manager",
       ],
       path: "/",
-      image: "/rdr2modslg.png",
+      image: "/banner.png",
       jsonLd: [
         SchemaOrg.website(),
         SchemaOrg.organization(),
@@ -443,7 +444,7 @@ function Index() {
 
   const reportMod = (modTitle: string) => {
     showToast("Opening report page...");
-    navigate({ to: "/contact", search: { subject: `Report: ${modTitle}` } as any });
+    navigate({ to: "/report", search: { mod: modTitle } as any });
   };
 
   const scrollFeatured = (direction: "left" | "right") => {
@@ -556,87 +557,89 @@ function Index() {
 
           <main className="mx-auto max-w-[1920px] px-4 pb-16 pt-5 sm:px-6 sm:pt-6 space-y-12">
             {/* Integrated Hero Section with Integrated Search Bar */}
-            <section className="relative min-h-[480px] overflow-hidden rounded-3xl ring-1 ring-border shadow-2xl flex items-center justify-center text-center sm:min-h-[540px]">
-              <video
-                ref={videoRef}
-                muted
-                loop
-                preload="auto"
-                playsInline
-                autoPlay
-                className="absolute inset-0 h-full w-full object-cover scale-[1.02]"
-              />
-              <button
-                onClick={() => {
-                  setMuted((m) => {
-                    const next = !m;
-                    if (videoRef.current) videoRef.current.muted = next;
-                    return next;
-                  });
-                }}
-                aria-label={muted ? "Unmute video" : "Mute video"}
-                title={muted ? "Unmute" : "Mute"}
-                className="absolute right-4 top-4 z-20 flex size-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-black/80 active:scale-[0.96] cursor-pointer shadow-md"
-              >
-                {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
-              </button>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/70 backdrop-blur-[1px]" />
+            <AnimatedContent distance={40} direction="vertical" duration={0.8} threshold={0.05}>
+              <section className="relative min-h-[480px] overflow-hidden rounded-3xl ring-1 ring-border shadow-2xl flex items-center justify-center text-center sm:min-h-[540px]">
+                <video
+                  ref={videoRef}
+                  muted
+                  loop
+                  preload="auto"
+                  playsInline
+                  autoPlay
+                  className="absolute inset-0 h-full w-full object-cover scale-[1.02]"
+                />
+                <button
+                  onClick={() => {
+                    setMuted((m) => {
+                      const next = !m;
+                      if (videoRef.current) videoRef.current.muted = next;
+                      return next;
+                    });
+                  }}
+                  aria-label={muted ? "Unmute video" : "Mute video"}
+                  title={muted ? "Unmute" : "Mute"}
+                  className="absolute right-4 top-4 z-20 flex size-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-black/80 active:scale-[0.96] cursor-pointer shadow-md"
+                >
+                  {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+                </button>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/70 backdrop-blur-[1px]" />
 
-              <div className="relative z-10 flex max-w-4xl flex-col items-center justify-center px-6 py-12 text-center space-y-6">
-                <h1 className="font-display text-5xl leading-tight tracking-wide text-white sm:text-6xl md:text-7xl">
-                  Discover <span className="text-primary font-bold">RDR2 Mods</span> & RedM Scripts
-                </h1>
+                <div className="relative z-10 flex max-w-4xl flex-col items-center justify-center px-6 py-12 text-center space-y-6">
+                  <h1 className="font-display text-5xl leading-tight tracking-wide text-white sm:text-6xl md:text-7xl">
+                    Discover <span className="text-primary font-bold">RDR2 Mods</span> & RedM Scripts
+                  </h1>
 
-                <p className="max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-                  Explore verified single-player trainers, ASI mods, Lenny's Mod Loader assets, and RedM multiplayer server resources.
-                </p>
+                  <p className="max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+                    Explore verified single-player trainers, ASI mods, Lenny's Mod Loader assets, and RedM multiplayer server resources.
+                  </p>
 
-                {/* Hero Fast Search Bar */}
-                <div className="w-full max-w-xl pt-2">
-                  <div className="relative flex items-center rounded-full bg-black/60 p-1.5 ring-1 ring-white/30 backdrop-blur-md shadow-2xl focus-within:ring-primary focus-within:bg-black/80 transition-all">
-                    <Search className="ml-3.5 size-5 text-white/60 shrink-0" aria-hidden="true" />
-                    <input
-                      value={query}
-                      onChange={(e) => setQuery(e.target.value)}
-                      placeholder="Search trainers, ASI scripts, RedM resources..."
-                      className="w-full bg-transparent px-3 py-2 text-sm text-white outline-none placeholder:text-white/60"
-                    />
-                    {query && (
-                      <button
-                        onClick={() => setQuery("")}
-                        className="mr-2 text-white/60 hover:text-white text-xs font-semibold px-2 py-1 rounded-full bg-white/10"
-                      >
-                        Clear
-                      </button>
-                    )}
-                    <Button asChild size="sm" className="rounded-full px-5 font-semibold shrink-0 shadow-md transition-all active:scale-[0.96]">
-                      <Link to={`/catalog${query ? `?search=${encodeURIComponent(query)}` : ""}`}>
-                        Explore Catalog
-                      </Link>
-                    </Button>
-                  </div>
+                  {/* Hero Fast Search Bar */}
+                  <div className="w-full max-w-xl pt-2">
+                    <div className="relative flex items-center rounded-full bg-black/60 p-1.5 ring-1 ring-white/30 backdrop-blur-md shadow-2xl focus-within:ring-primary focus-within:bg-black/80 transition-all">
+                      <Search className="ml-3.5 size-5 text-white/60 shrink-0" aria-hidden="true" />
+                      <input
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Search trainers, ASI scripts, RedM resources..."
+                        className="w-full bg-transparent px-3 py-2 text-sm text-white outline-none placeholder:text-white/60"
+                      />
+                      {query && (
+                        <button
+                          onClick={() => setQuery("")}
+                          className="mr-2 text-white/60 hover:text-white text-xs font-semibold px-2 py-1 rounded-full bg-white/10"
+                        >
+                          Clear
+                        </button>
+                      )}
+                      <Button asChild size="sm" className="rounded-full px-5 font-semibold shrink-0 shadow-md transition-all active:scale-[0.96]">
+                        <Link to={`/catalog${query ? `?search=${encodeURIComponent(query)}` : ""}`}>
+                          Explore Catalog
+                        </Link>
+                      </Button>
+                    </div>
 
-                  {/* Hero Quick Filter Tags */}
-                  <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-white/80">
-                    <span className="font-mono text-white/50 text-[11px] uppercase">Popular:</span>
-                    {[
-                      { label: "ScriptHook", query: "script" },
-                      { label: "LML Loader", query: "lml" },
-                      { label: "RedM Scripts", query: "redm" },
-                      { label: "ReShade", query: "graphics" },
-                    ].map((item) => (
-                      <button
-                        key={item.label}
-                        onClick={() => setQuery(item.query)}
-                        className="rounded-full bg-white/10 px-3 py-1 text-white hover:bg-white/20 transition-all active:scale-95 cursor-pointer backdrop-blur-sm"
-                      >
-                        {item.label}
-                      </button>
-                    ))}
+                    {/* Hero Quick Filter Tags */}
+                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-white/80">
+                      <span className="font-mono text-white/50 text-[11px] uppercase">Popular:</span>
+                      {[
+                        { label: "ScriptHook", query: "script" },
+                        { label: "LML Loader", query: "lml" },
+                        { label: "RedM Scripts", query: "redm" },
+                        { label: "ReShade", query: "graphics" },
+                      ].map((item) => (
+                        <button
+                          key={item.label}
+                          onClick={() => setQuery(item.query)}
+                          className="rounded-full bg-white/10 px-3 py-1 text-white hover:bg-white/20 transition-all active:scale-95 cursor-pointer backdrop-blur-sm"
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </AnimatedContent>
 
 
 
@@ -658,34 +661,43 @@ function Index() {
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {categoryCards.map((cat) => {
+                {categoryCards.map((cat, idx) => {
                   return (
-                    <Link
+                    <AnimatedContent
                       key={cat.id}
-                      to={cat.path}
-                      className="group relative overflow-hidden rounded-2xl border border-border/80 bg-card p-5 shadow-sm transition-all hover:border-primary/60 hover:shadow-md active:scale-[0.98] flex flex-col justify-between"
+                      distance={30}
+                      direction="vertical"
+                      duration={0.6}
+                      delay={idx * 0.1}
+                      threshold={0.15}
                     >
-                      <img
-                        src={cat.image}
-                        alt=""
-                        aria-hidden="true"
-                        className={cat.imageClass}
-                      />
-                      <div className="space-y-2 relative z-10 max-w-[58%]">
-                        <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                          {cat.title}
-                        </h3>
+                      <Link
+                        to="/catalog"
+                        search={{ category: cat.categoryParam }}
+                        className="group relative overflow-hidden rounded-2xl border border-border/80 bg-card p-5 shadow-sm transition-all hover:border-primary/60 hover:shadow-md active:scale-[0.98] flex flex-col justify-between h-full"
+                      >
+                        <img
+                          src={cat.image}
+                          alt=""
+                          aria-hidden="true"
+                          className={cat.imageClass}
+                        />
+                        <div className="space-y-2 relative z-10 max-w-[58%]">
+                          <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                            {cat.title}
+                          </h3>
 
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          {cat.desc}
-                        </p>
-                      </div>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            {cat.desc}
+                          </p>
+                        </div>
 
-                      <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform relative z-10">
-                        Explore Category
-                        <ArrowRight className="size-3.5" />
-                      </div>
-                    </Link>
+                        <div className="mt-4 relative z-10 flex items-center gap-1.5 text-xs font-semibold text-primary">
+                          Explore Category
+                          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </Link>
+                    </AnimatedContent>
                   );
                 })}
               </div>
@@ -747,117 +759,59 @@ function Index() {
             ) : (
               <>
                 {/* Featured Mods Horizontal Sliding Carousel */}
-                <section className="space-y-4">
-                  <div className="flex items-end justify-between border-b border-border/60 pb-3">
-                    <div>
-                      <h2 className="font-display text-3xl font-bold text-foreground">
-                        Featured Highlights
-                      </h2>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      {/* Left & Right Carousel Controls */}
-                      <div className="flex items-center gap-1.5">
-                        <button
-                          onClick={() => scrollFeatured("left")}
-                          aria-label="Scroll left"
-                          title="Previous featured mods"
-                          className="flex size-8 items-center justify-center rounded-full border border-border/80 bg-card text-foreground transition-all hover:bg-accent hover:border-primary/50 active:scale-95 shadow-sm cursor-pointer"
-                        >
-                          <ChevronLeft className="size-4" />
-                        </button>
-                        <button
-                          onClick={() => scrollFeatured("right")}
-                          aria-label="Scroll right"
-                          title="Next featured mods"
-                          className="flex size-8 items-center justify-center rounded-full border border-border/80 bg-card text-foreground transition-all hover:bg-accent hover:border-primary/50 active:scale-95 shadow-sm cursor-pointer"
-                        >
-                          <ChevronRight className="size-4" />
-                        </button>
+                <AnimatedContent distance={40} direction="vertical" duration={0.8} threshold={0.1}>
+                  <section className="space-y-4">
+                    <div className="flex items-end justify-between border-b border-border/60 pb-3">
+                      <div>
+                        <h2 className="font-display text-3xl font-bold text-foreground">
+                          Featured Highlights
+                        </h2>
                       </div>
 
-                      <Link
-                        to="/catalog"
-                        className="hidden items-center gap-1 text-sm font-semibold text-primary hover:underline sm:flex"
-                      >
-                        View All ({mods.length})
-                        <ArrowRight className="size-4" />
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Horizontal Sliding Carousel Container */}
-                  <div
-                    ref={featuredScrollRef}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                    className="no-scrollbar flex gap-5 overflow-x-auto scroll-smooth snap-x snap-proximity pb-3 pt-1"
-                  >
-                    {featuredMods.map((mod, index) => (
-                      <div
-                        key={`${mod.title}-${index}`}
-                        className="w-[280px] sm:w-[320px] shrink-0 snap-start"
-                      >
-                        <ModCard
-                          mod={mod}
-                          index={index}
-                          stars={starCounts[mod.url]}
-                          isFav={favorites.includes(mod.url)}
-                          onToggleFavorite={toggleFavorite}
-                          onCopyUrl={copyUrl}
-                          onShareWithFriend={shareWithFriend}
-                          onReportMod={reportMod}
-                          onOpenModModal={setSelectedModModal}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                {/* 2-Column Desktop Grid Layout: Main Explorer (Left) & Sidebar Hub (Right) */}
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 items-start">
-                  {/* Left Column (8 Columns on Large Desktop) */}
-                  <div className="lg:col-span-8 space-y-10">
-                    {/* Tabbed Mod Explorer */}
-                    <section className="space-y-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-3 gap-3">
-                        <div>
-                          <h2 className="font-display text-3xl font-bold text-foreground">
-                            Explore Catalog
-                          </h2>
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            Filter mods directly on the homepage
-                          </p>
+                      <div className="flex items-center gap-4">
+                        {/* Left & Right Carousel Controls */}
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => scrollFeatured("left")}
+                            aria-label="Scroll left"
+                            title="Previous featured mods"
+                            className="flex size-8 items-center justify-center rounded-full border border-border/80 bg-card text-foreground transition-all hover:bg-accent hover:border-primary/50 active:scale-95 shadow-sm cursor-pointer"
+                          >
+                            <ChevronLeft className="size-4" />
+                          </button>
+                          <button
+                            onClick={() => scrollFeatured("right")}
+                            aria-label="Scroll right"
+                            title="Next featured mods"
+                            className="flex size-8 items-center justify-center rounded-full border border-border/80 bg-card text-foreground transition-all hover:bg-accent hover:border-primary/50 active:scale-95 shadow-sm cursor-pointer"
+                          >
+                            <ChevronRight className="size-4" />
+                          </button>
                         </div>
 
-                        {/* Filter Tabs */}
-                        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar rounded-full border border-border/80 bg-card p-1 shadow-sm shrink-0">
-                          {[
-                            { id: "featured", label: "Featured" },
-                            { id: "starred", label: "Top Rated" },
-                            { id: "sp", label: "Single Player" },
-                            { id: "redm", label: "RedM" },
-                          ].map((tab) => (
-                            <button
-                              key={tab.id}
-                              onClick={() => setActiveTab(tab.id as any)}
-                              className={`rounded-full px-3.5 py-1 text-xs font-semibold transition-all cursor-pointer ${
-                                activeTab === tab.id
-                                  ? "bg-primary text-primary-foreground shadow-sm"
-                                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                              }`}
-                            >
-                              {tab.label}
-                            </button>
-                          ))}
-                        </div>
+                        <Link
+                          to="/catalog"
+                          className="hidden items-center gap-1 text-sm font-semibold text-primary hover:underline sm:flex"
+                        >
+                          View All ({mods.length})
+                          <ArrowRight className="size-4" />
+                        </Link>
                       </div>
+                    </div>
 
-                      {/* Tabbed Mod Cards Grid */}
-                      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                        {tabFilteredMods.map((mod, index) => (
+                    {/* Horizontal Sliding Carousel Container */}
+                    <div
+                      ref={featuredScrollRef}
+                      onMouseEnter={() => setIsPaused(true)}
+                      onMouseLeave={() => setIsPaused(false)}
+                      className="no-scrollbar flex gap-5 overflow-x-auto scroll-smooth snap-x snap-proximity pb-3 pt-1"
+                    >
+                      {featuredMods.map((mod, index) => (
+                        <div
+                          key={`${mod.title}-${index}`}
+                          className="w-[280px] sm:w-[320px] shrink-0 snap-start"
+                        >
                           <ModCard
-                            key={`tab-${mod.title}-${index}`}
                             mod={mod}
                             index={index}
                             stars={starCounts[mod.url]}
@@ -868,248 +822,320 @@ function Index() {
                             onReportMod={reportMod}
                             onOpenModModal={setSelectedModModal}
                           />
-                        ))}
-                      </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                </AnimatedContent>
 
-                      <div className="pt-2 text-center">
-                        <Button asChild variant="secondary" className="rounded-full px-8 font-semibold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all">
-                          <Link to="/catalog">
-                            View All {mods.length} Mods in Full Catalog
-                          </Link>
-                        </Button>
-                      </div>
-                    </section>
+                {/* 2-Column Desktop Grid Layout: Main Explorer (Left) & Sidebar Hub (Right) */}
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 items-start">
+                  {/* Left Column (8 Columns on Large Desktop) */}
+                  <div className="lg:col-span-8 space-y-10">
+                    {/* Tabbed Mod Explorer */}
+                    <AnimatedContent distance={40} direction="vertical" duration={0.8} threshold={0.1}>
+                      <section className="space-y-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-3 gap-3">
+                          <div>
+                            <h2 className="font-display text-3xl font-bold text-foreground">
+                              Explore Catalog
+                            </h2>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              Filter mods directly on the homepage
+                            </p>
+                          </div>
+
+                          {/* Filter Tabs */}
+                          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar rounded-full border border-border/80 bg-card p-1 shadow-sm shrink-0">
+                            {[
+                              { id: "featured", label: "Featured" },
+                              { id: "starred", label: "Top Rated" },
+                              { id: "sp", label: "Single Player" },
+                              { id: "redm", label: "RedM" },
+                            ].map((tab) => (
+                              <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id as any)}
+                                className={`rounded-full px-3.5 py-1 text-xs font-semibold transition-all cursor-pointer ${
+                                  activeTab === tab.id
+                                    ? "bg-primary text-primary-foreground shadow-sm"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                }`}
+                              >
+                                {tab.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Tabbed Mod Cards Grid */}
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                          {tabFilteredMods.map((mod, index) => (
+                            <ModCard
+                              key={`tab-${mod.title}-${index}`}
+                              mod={mod}
+                              index={index}
+                              stars={starCounts[mod.url]}
+                              isFav={favorites.includes(mod.url)}
+                              onToggleFavorite={toggleFavorite}
+                              onCopyUrl={copyUrl}
+                              onShareWithFriend={shareWithFriend}
+                              onReportMod={reportMod}
+                              onOpenModModal={setSelectedModModal}
+                            />
+                          ))}
+                        </div>
+
+                        <div className="pt-2 text-center">
+                          <Button asChild variant="secondary" className="rounded-full px-8 font-semibold shadow-sm hover:bg-primary hover:text-primary-foreground transition-all">
+                            <Link to="/catalog">
+                              View All {mods.length} Mods in Full Catalog
+                            </Link>
+                          </Button>
+                        </div>
+                      </section>
+                    </AnimatedContent>
 
                     {/* Essential Mod Loader Guides Showcase Grid */}
-                    <section className="space-y-6">
-                      <div className="flex items-end justify-between border-b border-border/60 pb-3">
-                        <div>
-                          <h2 className="font-display text-3xl font-bold text-foreground">
-                            Modding Guides
-                          </h2>
-                        </div>
-                        <Link
-                          to="/guide"
-                          className="hidden items-center gap-1 text-sm font-semibold text-primary hover:underline sm:flex"
-                        >
-                          View All Guides
-                          <ArrowRight className="size-4" />
-                        </Link>
-                      </div>
-
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        {setupGuides.map((guide) => (
+                    <AnimatedContent distance={40} direction="vertical" duration={0.8} threshold={0.1}>
+                      <section className="space-y-6">
+                        <div className="flex items-end justify-between border-b border-border/60 pb-3">
+                          <div>
+                            <h2 className="font-display text-3xl font-bold text-foreground">
+                              Modding Guides
+                            </h2>
+                          </div>
                           <Link
-                            key={guide.path}
-                            to={guide.path}
-                            className="group flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.98]"
+                            to="/guide"
+                            className="hidden items-center gap-1 text-sm font-semibold text-primary hover:underline sm:flex"
                           >
-                            <div className="space-y-2">
-                              <div className="flex items-center justify-end">
-                                <span className="rounded-full bg-muted/80 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
-                                  {guide.tag}
-                                </span>
+                            View All Guides
+                            <ArrowRight className="size-4" />
+                          </Link>
+                        </div>
+
+                        <div className="grid gap-4 sm:grid-cols-2">
+                          {setupGuides.map((guide) => (
+                            <Link
+                              key={guide.path}
+                              to={guide.path}
+                              className="group flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.98]"
+                            >
+                              <div className="space-y-2">
+                                <div className="flex items-center justify-end">
+                                  <span className="rounded-full bg-muted/80 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
+                                    {guide.tag}
+                                  </span>
+                                </div>
+
+                                <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                                  {guide.title}
+                                </h3>
+
+                                <p className="text-xs text-muted-foreground leading-relaxed">
+                                  {guide.desc}
+                                </p>
                               </div>
 
-                              <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                                {guide.title}
-                              </h3>
-
-                              <p className="text-xs text-muted-foreground leading-relaxed">
-                                {guide.desc}
-                              </p>
-                            </div>
-
-                            <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between">
-                              <span className="text-xs font-semibold text-primary flex items-center gap-1 group-hover:underline">
-                                Read Guide
-                                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                              </span>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </section>
+                              <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between">
+                                <span className="text-xs font-semibold text-primary flex items-center gap-1 group-hover:underline">
+                                  Read Guide
+                                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                                </span>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </section>
+                    </AnimatedContent>
                   </div>
 
                   {/* Right Column Sidebar (4 Columns on Large Desktop) */}
                   <div className="lg:col-span-4 space-y-6">
                     {/* Quickstart 3-Step Installation Box */}
-                    <div className="rounded-3xl border border-border/80 bg-card p-6 shadow-sm space-y-4 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 -mt-4 -mr-4 h-20 w-20 rounded-full bg-primary/10 blur-xl pointer-events-none" />
+                    <AnimatedContent distance={35} direction="vertical" duration={0.7} delay={0.1}>
+                      <div className="rounded-3xl border border-border/80 bg-card p-6 shadow-sm space-y-4 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 -mt-4 -mr-4 h-20 w-20 rounded-full bg-primary/10 blur-xl pointer-events-none" />
 
-                      <div className="space-y-1">
-                        <h3 className="font-display text-xl font-bold text-foreground">
-                          Quick Modding Checklist
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          Follow these 3 steps to set up RDR2 modding
-                        </p>
-                      </div>
+                        <div className="space-y-1">
+                          <h3 className="font-display text-xl font-bold text-foreground">
+                            Quick Modding Checklist
+                          </h3>
+                          <p className="text-xs text-muted-foreground">
+                            Follow these 3 steps to set up RDR2 modding
+                          </p>
+                        </div>
 
-                      <div className="space-y-3 pt-1">
-                        <Link
-                          to="/guide/scripthook"
-                          className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/50 p-3 transition-all hover:border-primary/50"
-                        >
-                          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-mono text-xs font-bold">
-                            1
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">
-                              Script Hook RDR2
-                            </div>
-                            <div className="text-[11px] text-muted-foreground">
-                              Install dinput8.dll & ScriptHookRDR2.dll into game folder
-                            </div>
-                          </div>
-                        </Link>
-
-                        <Link
-                          to="/guide/lml"
-                          className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/50 p-3 transition-all hover:border-primary/50"
-                        >
-                          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-mono text-xs font-bold">
-                            2
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">
-                              Lenny's Mod Loader
-                            </div>
-                            <div className="text-[11px] text-muted-foreground">
-                              Copy ModLoader contents to game directory
-                            </div>
-                          </div>
-                        </Link>
-
-                        <Link
-                          to="/catalog"
-                          className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/50 p-3 transition-all hover:border-primary/50"
-                        >
-                          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-mono text-xs font-bold">
-                            3
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">
-                              Download Mods
-                            </div>
-                            <div className="text-[11px] text-muted-foreground">
-                              Drop mod folders directly into the /lml directory
-                            </div>
-                          </div>
-                        </Link>
-                      </div>
-
-                      <Button asChild size="sm" variant="secondary" className="w-full rounded-full text-xs font-semibold hover:bg-primary hover:text-primary-foreground transition-all">
-                        <Link to="/guide">View Full Installation Directory</Link>
-                      </Button>
-                    </div>
-
-                    {/* Featured Mod Authors Spotlight */}
-                    <div className="rounded-3xl border border-border/80 bg-card p-6 shadow-sm space-y-4">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-display text-lg font-bold text-foreground">
-                          Top Contributors
-                        </h3>
-                        <span className="text-[10px] font-mono text-muted-foreground uppercase">
-                          GitHub
-                        </span>
-                      </div>
-
-                      <div className="space-y-2.5">
-                        {topCreators.map((creator) => (
-                          <a
-                            key={creator.name}
-                            href={`https://github.com/${creator.name}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-center justify-between rounded-xl border border-border/50 bg-background/40 p-2.5 transition-all hover:border-primary/40 hover:bg-background/80"
+                        <div className="space-y-3 pt-1">
+                          <Link
+                            to="/guide/scripthook"
+                            className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/50 p-3 transition-all hover:border-primary/50"
                           >
-                            <div className="flex items-center gap-2.5 min-w-0">
-                              <img
-                                src={`https://github.com/${creator.name}.png?size=80`}
-                                alt={creator.name}
-                                className="size-7 rounded-full ring-1 ring-border shrink-0"
-                              />
-                              <div className="min-w-0">
-                                <div className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-                                  @{creator.name}
-                                </div>
-                                <div className="text-[10px] text-muted-foreground font-mono">
-                                  {creator.count} Open Source Mod{creator.count > 1 ? "s" : ""}
-                                </div>
+                            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-mono text-xs font-bold">
+                              1
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">
+                                Script Hook RDR2
+                              </div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Install dinput8.dll & ScriptHookRDR2.dll into game folder
                               </div>
                             </div>
-                            <ExternalLink className="size-3 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-                          </a>
-                        ))}
-                      </div>
-                    </div>
+                          </Link>
 
-                    {/* RedM & Single Player Distinction Banner */}
-                    <div className="rounded-3xl border border-border/80 bg-gradient-to-br from-card via-card to-primary/5 p-6 shadow-sm relative overflow-hidden group">
-                      <img
-                        src="/NicePng_red-beard-png_1934462.png"
-                        alt=""
-                        aria-hidden="true"
-                        className="absolute right-0 bottom-0 h-36 sm:h-40 max-w-[45%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-85 transition-opacity duration-300"
-                      />
-                      <div className="relative z-10 max-w-[65%] space-y-3">
-                        <h3 className="font-display text-lg font-bold text-foreground">
-                          Single Player & RedM Servers
-                        </h3>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          Whether you are tweaking Story Mode graphics or building a custom FiveM/RedM roleplay server, our catalog aggregates verified GitHub repositories.
-                        </p>
-                        <div className="pt-1 flex flex-wrap items-center gap-2">
-                          <Button asChild size="sm" variant="secondary" className="rounded-full text-xs font-semibold px-4 active:scale-95">
-                            <Link to="/catalog?category=sp">Single Player</Link>
-                          </Button>
-                          <Button asChild size="sm" variant="secondary" className="rounded-full text-xs font-semibold px-4 active:scale-95">
-                            <Link to="/catalog?category=redm">RedM Resources</Link>
-                          </Button>
+                          <Link
+                            to="/guide/lml"
+                            className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/50 p-3 transition-all hover:border-primary/50"
+                          >
+                            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-mono text-xs font-bold">
+                              2
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">
+                                Lenny's Mod Loader
+                              </div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Copy ModLoader contents to game directory
+                              </div>
+                            </div>
+                          </Link>
+
+                          <Link
+                            to="/catalog"
+                            className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background/50 p-3 transition-all hover:border-primary/50"
+                          >
+                            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-mono text-xs font-bold">
+                              3
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">
+                                Download Mods
+                              </div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Drop mod folders directly into the /lml directory
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+
+                        <Button asChild size="sm" variant="secondary" className="w-full rounded-full text-xs font-semibold hover:bg-primary hover:text-primary-foreground transition-all">
+                          <Link to="/guide">View Full Installation Directory</Link>
+                        </Button>
+                      </div>
+                    </AnimatedContent>
+
+                    {/* Featured Mod Authors Spotlight */}
+                    <AnimatedContent distance={35} direction="vertical" duration={0.7} delay={0.2}>
+                      <div className="rounded-3xl border border-border/80 bg-card p-6 shadow-sm space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-display text-lg font-bold text-foreground">
+                            Top Contributors
+                          </h3>
+                          <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                            GitHub
+                          </span>
+                        </div>
+
+                        <div className="space-y-2.5">
+                          {topCreators.map((creator) => (
+                            <a
+                              key={creator.name}
+                              href={`https://github.com/${creator.name}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group flex items-center justify-between rounded-xl border border-border/50 bg-background/40 p-2.5 transition-all hover:border-primary/40 hover:bg-background/80"
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <img
+                                  src={`https://github.com/${creator.name}.png?size=80`}
+                                  alt={creator.name}
+                                  className="size-7 rounded-full ring-1 ring-border shrink-0"
+                                />
+                                <div className="min-w-0">
+                                  <div className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                                    @{creator.name}
+                                  </div>
+                                  <div className="text-[10px] text-muted-foreground font-mono">
+                                    {creator.count} Open Source Mod{creator.count > 1 ? "s" : ""}
+                                  </div>
+                                </div>
+                              </div>
+                              <ExternalLink className="size-3 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                            </a>
+                          ))}
                         </div>
                       </div>
-                    </div>
+                    </AnimatedContent>
+
+                    {/* RedM & Single Player Distinction Banner */}
+                    <AnimatedContent distance={35} direction="vertical" duration={0.7} delay={0.3}>
+                      <div className="rounded-3xl border border-border/80 bg-gradient-to-br from-card via-card to-primary/5 p-6 shadow-sm relative overflow-hidden group">
+                        <img
+                          src="/NicePng_red-beard-png_1934462.png"
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute right-0 bottom-0 h-36 sm:h-40 max-w-[45%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-85 transition-opacity duration-300"
+                        />
+                        <div className="relative z-10 max-w-[65%] space-y-3">
+                          <h3 className="font-display text-lg font-bold text-foreground">
+                            Single Player & RedM Servers
+                          </h3>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Whether you are tweaking Story Mode graphics or building a custom FiveM/RedM roleplay server, our catalog aggregates verified GitHub repositories.
+                          </p>
+                          <div className="pt-1 flex flex-wrap items-center gap-2">
+                            <Button asChild size="sm" variant="secondary" className="rounded-full text-xs font-semibold px-4 active:scale-95">
+                              <Link to="/catalog?category=sp">Single Player</Link>
+                            </Button>
+                            <Button asChild size="sm" variant="secondary" className="rounded-full text-xs font-semibold px-4 active:scale-95">
+                              <Link to="/catalog?category=redm">RedM Resources</Link>
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </AnimatedContent>
                   </div>
                 </div>
 
                 {/* Section 4: Catalog Promo Callout */}
-                <section className="rounded-3xl border border-border/80 bg-card p-8 shadow-md sm:p-12 text-center relative overflow-hidden group">
-                  {/* Background Recolored Artwork Graphic Watermark */}
-                  <div
-                    className="absolute inset-0 h-full w-full bg-primary/35 opacity-25 sm:opacity-30 pointer-events-none select-none transition-opacity duration-500 group-hover:opacity-40"
-                    style={{
-                      maskImage: "url(/pngwing.com.png)",
-                      WebkitMaskImage: "url(/pngwing.com.png)",
-                      maskSize: "cover",
-                      WebkitMaskSize: "cover",
-                      maskPosition: "center bottom",
-                      WebkitMaskPosition: "center bottom",
-                      maskRepeat: "no-repeat",
-                      WebkitMaskRepeat: "no-repeat",
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/40 pointer-events-none" />
+                <AnimatedContent distance={45} direction="vertical" duration={0.8} threshold={0.15}>
+                  <section className="rounded-3xl border border-border/80 bg-card p-8 shadow-md sm:p-12 text-center relative overflow-hidden group">
+                    {/* Background Recolored Artwork Graphic Watermark */}
+                    <div
+                      className="absolute inset-0 h-full w-full bg-primary/35 opacity-25 sm:opacity-30 pointer-events-none select-none transition-opacity duration-500 group-hover:opacity-40"
+                      style={{
+                        maskImage: "url(/pngwing.com.png)",
+                        WebkitMaskImage: "url(/pngwing.com.png)",
+                        maskSize: "cover",
+                        WebkitMaskSize: "cover",
+                        maskPosition: "center bottom",
+                        WebkitMaskPosition: "center bottom",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskRepeat: "no-repeat",
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/40 pointer-events-none" />
 
-                  <div className="relative z-10 mx-auto max-w-2xl space-y-4">
-                    <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-                      Explore the Complete <span className="text-primary font-bold">Mod Catalog</span>
-                    </h2>
+                    <div className="relative z-10 mx-auto max-w-2xl space-y-4">
+                      <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
+                        Explore the Complete <span className="text-primary font-bold">Mod Catalog</span>
+                      </h2>
 
-                    <p className="text-sm text-muted-foreground sm:text-base leading-relaxed max-w-xl mx-auto">
-                      Discover all {mods.length}+ verified community modifications, RedM server scripts, and standalone enhancements with live GitHub star ratings and release sorting.
-                    </p>
+                      <p className="text-sm text-muted-foreground sm:text-base leading-relaxed max-w-xl mx-auto">
+                        Discover all {mods.length}+ verified community modifications, RedM server scripts, and standalone enhancements with live GitHub star ratings and release sorting.
+                      </p>
 
-                    <div className="pt-2 flex justify-center">
-                      <Button asChild size="lg" className="rounded-full px-8 font-semibold shadow-md active:scale-[0.96]">
-                        <Link to="/catalog">
-                          View Full Catalog ({mods.length} Mods)
-                        </Link>
-                      </Button>
+                      <div className="pt-2 flex justify-center">
+                        <Button asChild size="lg" className="rounded-full px-8 font-semibold shadow-md active:scale-[0.96]">
+                          <Link to="/catalog">
+                            View Full Catalog ({mods.length} Mods)
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                </section>
+                  </section>
+                </AnimatedContent>
               </>
             )}
           </main>
@@ -1172,7 +1198,7 @@ function Index() {
                   }}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-border/80 bg-background px-5 py-2.5 text-xs font-semibold text-foreground transition-all hover:bg-accent active:scale-[0.96] cursor-pointer"
                 >
-                  <span>Re-open GitHub Repository</span>
+                  Re-open GitHub Repository
                   <ExternalLink className="size-3.5" />
                 </button>
 

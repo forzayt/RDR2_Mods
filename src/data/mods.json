@@ -1,753 +1,512 @@
 [
-
-
   {
     "title": "Redm Car",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/zelbeus/redm_car",
     "thumbnail": ""
-  },  
-
-
-
+  },
   {
     "title": "Vorp Deliveryjob",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Hailey-Ross/vorp_DeliveryJob",
     "thumbnail": ""
-  },  
-
-
-
-  
+  },
   {
     "title": "Blaze Secret Doors",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Blaze-Scripts/bs-secretdoors",
     "thumbnail": "https://camo.githubusercontent.com/f3c6cc4a96365d8755c3e7491bc07544a6b28967090d73c399d48f239171a5f7/68747470733a2f2f692e696d6775722e636f6d2f466572317043332e6a706567"
-  },  
-
-
-
-  
-
+  },
   {
     "title": "Blaze Entity Info",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Blaze-Scripts/bs-entityinfo",
     "thumbnail": "https://camo.githubusercontent.com/3c8084dbfba31e9858cef7dd708f168663e24395cd8d9c3f4afc48f15dfb9918/68747470733a2f2f692e696d6775722e636f6d2f7174624d536e732e6a706567"
-  },  
-
-
-
-  
+  },
   {
     "title": "Blaze Countdown",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Blaze-Scripts/bs-countdown",
     "thumbnail": "https://camo.githubusercontent.com/d0321a740c4e5f722638e891377378a6a511d89f7732268dc0f8683b7b4a42b9/68747470733a2f2f692e696d6775722e636f6d2f66706f4d4e316c2e6a706567"
-  },  
-
-
-
+  },
   {
     "title": "Blaze Loading Screen",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Blaze-Scripts/bs-loadingscreen",
     "thumbnail": "https://camo.githubusercontent.com/eeba4ac2e762c5447a2ba961278f2cf3d62832d9982ab61d7f393b6ebebeceee/68747470733a2f2f692e696d6775722e636f6d2f57333132726c362e6a706567"
-  },  
-
-
+  },
   {
     "title": "RedemRP Deliveryjob",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/TheRealDelinquentRP/redemrp_Deliveryjob",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "Nozz4rr Treasure",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/xXxNozz4rrxXx/nozz4rr_treasure",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "Cas Simplenotify",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/codeaftersex/cas-simplenotify",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "Redm Website Template",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Quantum-Projects-RedM/RedM-Website-Template",
     "thumbnail": ""
-  },  
-
-
-
+  },
   {
     "title": "Redm MCP Public",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Cmoen11/redm-mcp-public",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "Redm Image Library",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/TankieTwitch/FREE-RedM-Image-Library",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "GlitchOo Doorlocks",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/GlitchOo/gs_doorlocks",
     "thumbnail": "https://camo.githubusercontent.com/913521c688227a56034268afe21c0fadcd420433459a2e9d48207d8f0cffd4e8/68747470733a2f2f692e6779617a6f2e636f6d2f39386463333938663763613866626631363066626635663162313465313238302e706e67"
-  },  
-
-
-
+  },
   {
     "title": "Moro Race",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/morojgovany/moro_race",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "Devchacha Weed",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Devchacha01/devchacha-weed",
     "thumbnail": ""
-  },  
-
-
-
+  },
   {
     "title": "Devchacha Gunsmith",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Devchacha01/devchacha-gunsmith",
     "thumbnail": "https://github.com/Devchacha01/devchacha-gunsmith/raw/main/img/banner.jpg"
-  },  
-
-
-
-
-
-
+  },
   {
     "title": "BCC Robbery",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-robbery",
     "thumbnail": ""
-  },  
-
-
+  },
   {
     "title": "BLN Free Maps",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/RedM-Free-Maps",
     "thumbnail": "https://github.com/blnStudio/RedM-Free-Maps/raw/main/ValentineEnhanced/.github/assets/img3.png"
-  },  
-
-
+  },
   {
     "title": "BLN Belt Lasso",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_belt_lasso",
     "thumbnail": "https://github.com/blnStudio/bln_belt_lasso/raw/main/.github/assets/banner.png"
-  },  
-
-
-
+  },
   {
     "title": "BLN Horse Shouts",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_horse_shouts",
     "thumbnail": "https://github.com/blnStudio/bln_horse_shouts/raw/main/.github/assets/banner.png"
-  },  
-
-
+  },
   {
     "title": "BLN Notify",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_notify",
     "thumbnail": "https://github.com/blnStudio/bln_notify/raw/main/.github/assets/banner.png"
   },
   {
     "title": "BLN Multi-coords",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_multicoords",
     "thumbnail": "https://github.com/blnStudio/bln_multicoords/raw/main/.github/assets/banner.png"
   },
   {
     "title": "BLN Loot Hunter",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_loot_hunter",
     "thumbnail": "https://github.com/blnStudio/bln_loot_hunter/raw/main/.github/assets/banner.png"
   },
-
   {
     "title": "BLN Grenade",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_grenade",
     "thumbnail": "https://github.com/blnStudio/bln_grenade/raw/main/.github/assets/banner.png"
   },
-
-
   {
     "title": "BLN 3D Waypoint",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_3d_waypoint",
     "thumbnail": "https://github.com/blnStudio/bln_3d_waypoint/raw/main/.github/assets/banner.png"
   },
-
-
-
-
-
-
   {
     "title": "BLN Scoreboard",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_scoreboard",
     "thumbnail": "https://github.com/blnStudio/bln_scoreboard/raw/main/.github/assets/banner.png"
   },
-
-
-
   {
     "title": "BLN Map Discoveries",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/blnStudio/bln_map_discoveries",
     "thumbnail": "https://github.com/blnStudio/bln_map_discoveries/raw/main/_imgs/demo.png"
   },
-
-
-
-
-
-
   {
     "title": "BW Chat V1",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BlackwaterTeaM/bw_chatv1",
     "thumbnail": "https://camo.githubusercontent.com/a47bfa62f8f4a03812342db3a017e6fd924e0aecd26c021d387a30260a232ed4/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f71486230543844782d48452f6d617872657364656661756c742e6a7067"
   },
-
-
-
-
-
   {
     "title": "Safe Pointing",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/siksdev/Safe-Pointing",
     "thumbnail": ""
   },
-
-
   {
     "title": "RedM Stores",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/DevDokus/Redm-Stores",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "RedM Teleport",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/DevDokus/RedM-Teleport",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "RedM Usable Items",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/DevDokus/RedM-UsableItems",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "Syn ID",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kamelzarandah/Syn_ID",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "Syn Miner Lumber",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kamelzarandah/syn_miner_lumber",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "Katana",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kamelzarandah/Katana",
     "thumbnail": ""
   },
-
-
-
   {
     "title": "RedM Trains",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Thunderstorm441/ts-trains-redm",
     "thumbnail": ""
   },
-
-
-
   {
     "title": "BCC Nazar",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-nazar",
     "thumbnail": ""
   },
-
-
   {
     "title": "Death Log",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kamelzarandah/Death_log",
     "thumbnail": ""
   },
-
-
   {
     "title": "Alentexas Blips",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/creativewild/alentexas_blips",
     "thumbnail": ""
   },
-
-
   {
     "title": "Outsider Grave Robbery",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/outsider31000/outsider_grave_robbery",
     "thumbnail": ""
   },
-
-
   {
     "title": "BCC Utils",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-utils",
     "thumbnail": ""
   },
-
-
-
   {
     "title": "Loading Screen",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/outsider31000/loadingscreen",
     "thumbnail": "https://raw.githubusercontent.com/forzayt/RDR2_Mods/submission-assets/submission-thumbnails/loading-screen-9612f536-e4eb-4dc1-909d-31ca83df565e.jpg"
-    
   },
-
-
-
-
-
-
   {
     "title": "Outsider Radial Menu",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/outsider31000/outsider_radial_menu",
     "thumbnail": ""
   },
-
-
-
-
-
-
   {
     "title": "Syn Minigame",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/outsider31000/syn_minigame",
     "thumbnail": ""
   },
-
-
-
-
-
-
   {
     "title": "RedM Info",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Nowimps8/RedM-info",
     "thumbnail": ""
   },
-
-
-
-
-
-
   {
     "title": "RedEM RP Farmer Job",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/RedEM-RP/redemrp_farmerjob",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "PMA Voice",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/AvarianKnight/pma-voice",
     "thumbnail": ""
   },
-
-
-
-
-
-
   {
     "title": "Shamey Doctor",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/ShameyWinehouse/shamey-doctor",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "Shamey Deliveries",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/ShameyWinehouse/shamey-deliveries",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "JC Mining Revamped",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Jewsie/jc-mining-revamped",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "BCC Minigames",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-minigames",
     "thumbnail": ""
   },
-
-
-
-
-
   {
     "title": "RedM Emotes",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kibook/redm-emotes",
     "thumbnail": ""
   },
-
-
-
   {
     "title": "BCC Custom Blips",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-customblips",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "PopDensity",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kibook/popdensity",
     "thumbnail": ""
   },
-
-
-
   {
     "title": "RedM Addon Vehicles",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Silonugget/RedM-Addon-Vehicles",
     "thumbnail": "https://raw.githubusercontent.com/forzayt/RDR2_Mods/submission-assets/submission-thumbnails/redm-addon-vehicles-7f7a44db-8db9-4ebf-99ee-5483da20236a.png"
   },
-
-
-
-
-
-
   {
     "title": "Vorp Crafting",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/VORPCORE/vorp_crafting",
     "thumbnail": "https://user-images.githubusercontent.com/10902965/172358344-ffb05bac-c6d2-4ca4-a7d3-4a3399d25425.png"
   },
-
-
-
-
-
   {
     "title": "Devchacha Ranch",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Devchacha01/devchacha-ranch",
     "thumbnail": ""
   },
-
-
   {
     "title": "Vorp Outlaws",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/VORPCORE/vorp_outlaws",
     "thumbnail": ""
   },
-
-
   {
     "title": "Void Blackout Vorp",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/VoidZero69/void_blackout-vorp",
     "thumbnail": ""
   },
-
-
   {
     "title": "Redm Object Loader",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/kibook/redm-objectloader",
     "thumbnail": "https://camo.githubusercontent.com/78382f39a2db3073571eba96b4d33a9e51d65a96c1390d6ab6ab87aa166a3ced/68747470733a2f2f692e696d6775722e636f6d2f716c6d767a77646d2e6a7067"
   },
-
-
   {
     "title": "Ghost Train",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/imthevieira/bg-ghosttrain",
     "thumbnail": ""
   },
-
-
   {
     "title": "Devchacha Weed",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Devchacha01/devchacha-weed",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "BCC Train",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-train",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "RDR2Photo Converter",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/SneakyAzWhat/RDR2PhotoConverter",
     "thumbnail": "https://raw.githubusercontent.com/SneakyAzWhat/RDR2PhotoConverter/master/v1.4%20app%20preview.png"
   },
   {
     "title": "Redm Bathing",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/xK3LY/redm_bathing",
     "thumbnail": ""
   },
-  
   {
     "title": "Xakra Steal",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/XakraD/xakra_steal",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "Xakra Animations",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/XakraD/xakra_animations",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "Moonshine Interiors",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/CryptoGenics/redm_moonshine_interiors",
     "thumbnail": ""
   },
-
   {
     "title": "Cas Banking Docs",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/codeaftersex/cas-banking-docs",
     "thumbnail": ""
   },
   {
     "title": "Cas Artheist",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/codeaftersex/cas-artheist",
     "thumbnail": ""
   },
-
-
   {
     "title": "Zeus Flaming Hooves",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/Z-eus/Zeus_Flaming_Hooves",
     "thumbnail": ""
   },
-  
   {
     "title": "NPC Doctor",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/HalconBM/npcdoctor",
     "thumbnail": ""
   },
-
-
-
-
   {
     "title": "Gizmo Props",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/fearss1993-jpg/g1zmo_prop-rsg-",
     "thumbnail": ""
   },
-
   {
     "title": "Vorp Police",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/VORPCORE/vorp_police",
     "thumbnail": "https://avatars.githubusercontent.com/u/64416274"
   },
   {
     "title": "BCC Pets",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-pets",
     "thumbnail": ""
   },
   {
     "title": "BCC Boats",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-boats",
     "thumbnail": ""
   },
   {
     "title": "BCC Stables",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-stables",
     "thumbnail": ""
   },
   {
     "title": "BCC Housing",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-housing",
     "thumbnail": ""
-  },  
-
+  },
   {
     "title": "BCC LoadScreen",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-loadscreen",
     "thumbnail": "https://camo.githubusercontent.com/1d699512d982f90cb32655a0d8500dba229af13153e3b5b38a0a0fcc22d3325e/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f6d5a4961796d6a4f4335772f302e6a7067"
   },
   {
     "title": "BCC Farming",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-farming",
     "thumbnail": ""
   },
   {
     "title": "BCC Ranch",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-ranch",
     "thumbnail": ""
   },
   {
     "title": "BCC Doorlocks",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-doorlocks",
     "thumbnail": ""
   },
   {
     "title": "BCC Rewards",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-rewards",
     "thumbnail": ""
   },
   {
     "title": "BCC ColorMap",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-colormap",
     "thumbnail": "https://camo.githubusercontent.com/134f00d874bf453217d76486917b555f999df23b77be48e18cf1087c142ca0bc/68747470733a2f2f66656d67612e636f6d3a383038302f696d616765732f73616d706c65732f73637265656e73686f74732f77616e7465645f726567696f6e735f6578616d706c652e706e67"
   },
   {
     "title": "BCC GoldPanning",
-    "tag":"redm",
+    "tag": "redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-goldpanning",
     "thumbnail": ""
   }
-  
-  
-
-  ]
+]
