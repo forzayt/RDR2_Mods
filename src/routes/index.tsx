@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import Hls from "hls.js";
-import { Moon, Search, Sun, Upload, Volume2, VolumeX } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Moon, Search, Star, Sun, Upload, Volume2, VolumeX } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const featuredVideoUrl = "https://rumble.com/hls-vod/vXOI5btQ6rU/playlist.m3u8";
 import { Button } from "@/components/ui/button";
@@ -31,11 +31,46 @@ const getGitHubUser = (url: string) => {
   }
 };
 
+/** Extract owner/repo from a github.com URL */
+const getGitHubRepo = (url: string): string | null => {
+  try {
+    const parts = new URL(url).pathname.split("/").filter(Boolean);
+    if (parts.length >= 2) return `${parts[0]}/${parts[1]}`;
+    return null;
+  } catch {
+    return null;
+  }
+};
+
 function Index() {
   const [dark, setDark] = useState(false);
   const [query, setQuery] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
+  const [starCounts, setStarCounts] = useState<Record<string, number>>({});
+
+  // Fetch GitHub star counts for all mods
+  useEffect(() => {
+    const fetchStars = async () => {
+      const entries: Record<string, number> = {};
+      await Promise.allSettled(
+        mods.map(async (mod) => {
+          const repo = getGitHubRepo(mod.url);
+          if (!repo) return;
+          try {
+            const res = await fetch(`https://api.github.com/repos/${repo}`);
+            if (!res.ok) return;
+            const data = await res.json();
+            if (typeof data.stargazers_count === "number") {
+              entries[mod.url] = data.stargazers_count;
+            }
+          } catch { /* ignore */ }
+        })
+      );
+      setStarCounts(entries);
+    };
+    fetchStars();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -147,7 +182,7 @@ function Index() {
                   className="rise group block min-w-0"
                   style={{ animationDelay: `${Math.min(index * 40, 240)}ms` }}
                 >
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg bg-muted ring-1 ring-border">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted ring-1 ring-border">
                     <img
                       src={mod.thumbnail}
                       alt={`${mod.title} mod preview`}
@@ -156,6 +191,12 @@ function Index() {
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
+                    {starCounts[mod.url] != null && (
+                      <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-yellow-400 px-2 py-0.5 text-xs font-semibold text-yellow-950 shadow-sm">
+                        <Star className="size-3 fill-yellow-950" aria-hidden="true" />
+                        {starCounts[mod.url]}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-3 px-0.5">
                     <div className="flex items-center gap-2">
