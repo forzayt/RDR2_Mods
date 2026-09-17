@@ -53,13 +53,13 @@ export function Navbar({
         <div className="flex items-center gap-3 lg:gap-6">
           <Link
             to="/"
-            className="group flex items-center rounded-full bg-neutral-950 px-3 py-1.5 ring-1 ring-neutral-800 shadow-sm transition-all hover:bg-black hover:ring-neutral-700 active:scale-[0.98]"
+            className="group flex items-center rounded-full bg-neutral-950 px-4 py-2 ring-1 ring-neutral-800 shadow-sm transition-all hover:bg-black hover:ring-neutral-700 active:scale-[0.98]"
             title="RDR2 Mods Home"
           >
             <img
               src={rdr2Logo}
               alt="RDR2 Mods"
-              className="h-6 w-auto object-contain transition-transform group-hover:scale-[1.02] sm:h-7"
+              className="h-7 w-auto object-contain transition-transform group-hover:scale-[1.02] sm:h-8"
             />
           </Link>
 

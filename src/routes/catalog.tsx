@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import mods from "@/data/mods.json";
@@ -253,10 +254,7 @@ function CatalogPage() {
                 Try adjusting your search terms or category filters.
               </p>
               <Button
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedTag("all");
-                }}
+                onClick={() => setSearchQuery("")}
                 variant="outline"
                 className="mt-4 rounded-full"
               >
@@ -266,9 +264,7 @@ function CatalogPage() {
           )}
         </main>
 
-        <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-          <p>RDR2 Mods Catalog &bull; Powered by open-source community contributors</p>
-        </footer>
+        <Footer />
       </div>
     </div>
   );

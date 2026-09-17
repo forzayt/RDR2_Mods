@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { type FormEvent, useState } from "react";
 
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import {
   Accordion,
@@ -219,9 +220,7 @@ function ContactPage() {
           </div>
         </main>
 
-        <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-          <p>RDR2 Mods Support & Community Center</p>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
