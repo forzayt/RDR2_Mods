@@ -168,7 +168,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "manifest", href: "/site.webmanifest" },
         ...rootSeo.links,
       ],
-      scripts: rootSeo.scripts,
     };
   },
   shellComponent: RootShell,

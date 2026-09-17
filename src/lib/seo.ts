@@ -15,7 +15,7 @@ export interface SeoOptions {
 }
 
 const SITE_NAME = "RDR2 Mods";
-const SITE_DOMAIN = "rdr2mods.com";
+const SITE_DOMAIN = "rdr2mods.in";
 const DEFAULT_ORIGIN = `https://${SITE_DOMAIN}`;
 const DEFAULT_OG_IMAGE = "/banner.png";
 const DEFAULT_OG_WIDTH = 1983;
@@ -49,7 +49,8 @@ function getCanonicalUrl(path?: string): string {
 
 /**
  * Generates 2026 standardized meta tags, Open Graph (WhatsApp/Discord/Social),
- * Twitter Cards, AI crawler directives (AEO/GEO), and Schema.org JSON-LD scripts.
+ * Twitter Cards, AI crawler directives (AEO/GEO), and Schema.org JSON-LD scripts
+ * using TanStack Router's native 'script:ld+json' meta property format.
  */
 export function generateSeoMeta(options: SeoOptions) {
   const {
@@ -92,7 +93,7 @@ export function generateSeoMeta(options: SeoOptions) {
     ? "noindex, nofollow"
     : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
-  const meta: Array<{ name?: string; property?: string; content: string }> = [
+  const meta: Array<Record<string, any>> = [
     // Standard SEO Tags
     { name: "title", content: fullTitle },
     { name: "description", content: description },
@@ -144,26 +145,23 @@ export function generateSeoMeta(options: SeoOptions) {
     meta.push({ property: "article:modified_time", content: modifiedTime });
   }
 
-  const links: Array<{ rel: string; href: string; type?: string; sizes?: string; crossOrigin?: string }> = [
-    { rel: "canonical", href: canonicalUrl },
-  ];
-
-  const scripts: Array<{ type: string; children: string }> = [];
-
+  // TanStack Router native JSON-LD meta embedding
   if (jsonLd) {
     const rawJsonLd = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
     rawJsonLd.forEach((item) => {
-      scripts.push({
-        type: "application/ld+json",
-        children: JSON.stringify(item),
+      meta.push({
+        "script:ld+json": item,
       });
     });
   }
 
+  const links: Array<{ rel: string; href: string; type?: string; sizes?: string; crossOrigin?: string }> = [
+    { rel: "canonical", href: canonicalUrl },
+  ];
+
   return {
     meta,
     links,
-    scripts,
   };
 }
 

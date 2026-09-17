@@ -36,4 +36,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://rdr2mods.com/sitemap.xml
+Sitemap: https://rdr2mods.in/sitemap.xml
