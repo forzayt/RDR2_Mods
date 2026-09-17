@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand Info */}
           <div className="md:col-span-6 lg:col-span-5">
             <Link to="/" className="inline-block transition-transform hover:scale-[1.02] active:scale-[0.98]">
-              <img src={rdr2Logo} alt="RDR2 Mods Logo" className="h-11 sm:h-14 w-auto object-contain" />
+              <img src={rdr2Logo} alt="RDR2 Mods Logo" className="h-11 sm:h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)] dark:drop-shadow-none transition-all" />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground font-body">
               The open community catalog for Red Dead Redemption 2 modifications, server scripts, and standalone enhancements.

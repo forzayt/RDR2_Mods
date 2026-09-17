@@ -59,7 +59,7 @@ export function Navbar({
             <img
               src={rdr2Logo}
               alt="RDR2 Mods"
-              className="h-9 w-auto object-contain sm:h-11"
+              className="h-9 w-auto object-contain sm:h-11 drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)] dark:drop-shadow-none transition-all"
             />
           </Link>
 
