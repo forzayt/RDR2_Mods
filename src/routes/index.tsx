@@ -71,7 +71,7 @@ function Index() {
     <div className={dark ? "dark" : ""}>
       <div className="min-h-screen bg-background font-body text-foreground antialiased transition-colors">
         <header className="sticky top-0 z-30 border-b border-border bg-surface-glass backdrop-blur-xl">
-          <div className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:flex sm:px-6">
+          <div className="mx-auto grid h-16 max-w-[1920px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:flex sm:px-6">
             <a href="#catalog" className="font-display text-2xl text-foreground">
               RDR2<span className="text-primary">·</span>Mods
             </a>
@@ -93,7 +93,7 @@ function Index() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-7xl px-4 pb-20 pt-5 sm:px-6 sm:pt-6">
+        <main className="mx-auto max-w-[1920px] px-4 pb-20 pt-5 sm:px-6 sm:pt-6">
           <section className="rise relative min-h-[410px] overflow-hidden rounded-xl ring-1 ring-border sm:min-h-[420px]">
             <video
                 ref={videoRef}
