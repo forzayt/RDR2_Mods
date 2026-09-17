@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { Moon, Search, Sun, Upload } from "lucide-react";
 import { useMemo, useState } from "react";
 
-import featuredImage from "@/assets/featured-ridge.jpg";
+const featuredVideoUrl = "https://rumble.com/hls-vod/vXOI5btQ6rU/playlist.m3u8";
 import { Button } from "@/components/ui/button";
 import mods from "@/data/mods.json";
 
@@ -73,8 +73,20 @@ function Index() {
 
         <main className="mx-auto max-w-7xl px-4 pb-20 pt-5 sm:px-6 sm:pt-6">
           <section className="rise relative min-h-[410px] overflow-hidden rounded-xl ring-1 ring-border sm:min-h-[420px]">
-            <img src={featuredImage} alt="A lone rider overlooking a river valley at sunset" width={1600} height={720} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-hero/90 via-hero/15 to-transparent" />
+            <video
+                
+                loop
+                preload="auto"
+                playsInline
+                autoPlay
+                className="absolute inset-0 h-full w-full object-cover"
+              >
+                <source
+                  src={featuredVideoUrl}
+                  type="video/mp4"
+                />
+              </video>
+            <div className="absolute inset-0 bg-gradient-to-t from-hero/80 via-hero/15 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-7">
               <div className="max-w-2xl min-w-0">
                 <span className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase text-primary-foreground">Featured</span>
