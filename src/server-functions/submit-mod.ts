@@ -3,8 +3,6 @@ import { z } from "zod";
 
 const submissionSchema = z.object({
   title: z.string().trim().min(3).max(100),
-  category: z.enum(["Weapons", "Horses", "Towns", "Landscapes", "Characters"]),
-  version: z.string().trim().min(1).max(30),
   summary: z.string().trim().min(10).max(140),
   description: z.string().trim().min(20).max(10_000),
   repositoryUrl: z.string().trim().url().max(300),
@@ -66,8 +64,6 @@ export const submitModIssue = createServerFn({ method: "POST" })
       "## Mod submission",
       "",
       `- **Title:** ${data.title}`,
-      `- **Category:** ${data.category}`,
-      `- **Version:** ${data.version}`,
       `- **Repository:** ${data.repositoryUrl}`,
       `- **Thumbnail:** ${data.thumbnailUrl}`,
       "",

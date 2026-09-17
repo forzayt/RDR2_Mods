@@ -53,8 +53,6 @@ function UploadMod() {
       const result = await submitModIssue({
         data: {
           title: String(formData.get("title") ?? ""),
-          category: String(formData.get("category") ?? "") as "Weapons" | "Horses" | "Towns" | "Landscapes" | "Characters",
-          version: String(formData.get("version") ?? ""),
           summary: String(formData.get("summary") ?? ""),
           description: String(formData.get("description") ?? ""),
           repositoryUrl,
@@ -126,23 +124,6 @@ function UploadMod() {
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="title">Mod title</Label>
                 <Input id="title" name="title" required placeholder="e.g. The Ridge Line" className={fieldClass} />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="category">Category</Label>
-                <select id="category" name="category" required defaultValue="" className={`${fieldClass} w-full text-sm outline-none`}>
-                  <option value="" disabled>Select a category</option>
-                  <option>Weapons</option>
-                  <option>Horses</option>
-                  <option>Towns</option>
-                  <option>Landscapes</option>
-                  <option>Characters</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="version">Version</Label>
-                <Input id="version" name="version" required placeholder="1.0.0" className={fieldClass} />
               </div>
 
               <div className="space-y-2 sm:col-span-2">
