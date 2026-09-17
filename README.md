@@ -179,7 +179,3 @@ This component library is designed for **composition** and can be used independe
 - [ ] Admin dashboard for moderation
 
 ---
-
-## 📄 License
-
-Built with [Lovable](https://lovable.dev) — fully open to contribution.
