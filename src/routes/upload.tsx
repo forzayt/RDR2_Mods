@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { type ChangeEvent, type FormEvent, useState } from "react";
 
+import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -159,30 +160,12 @@ function UploadMod() {
     }
   };
 
+  const [dark, setDark] = useState(false);
+
   return (
-    <div className="min-h-screen bg-background font-body text-foreground antialiased">
-      <header className="sticky top-0 z-30 border-b border-border bg-surface-glass backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link to="/" className="font-display text-2xl text-foreground">
-            RDR2<span className="text-primary">·</span>Mods
-          </Link>
-          <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
-          <span className="hidden font-cond text-sm uppercase text-muted-foreground sm:block">
-            Creator submission
-          </span>
-          <Button
-            asChild
-            variant="ghost"
-            size="compact"
-            className="ml-auto transition-[color,background-color,transform] active:scale-[0.96]"
-          >
-            <Link to="/">
-              <ArrowLeft className="size-3.5" aria-hidden="true" />
-              Back to mods
-            </Link>
-          </Button>
-        </div>
-      </header>
+    <div className={dark ? "dark" : ""}>
+      <div className="min-h-screen bg-background font-body text-foreground antialiased">
+        <Navbar dark={dark} onToggleDark={() => setDark(!dark)} />
 
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="max-w-2xl">
@@ -356,6 +339,7 @@ function UploadMod() {
           </aside>
         </form>
       </main>
+      </div>
     </div>
   );
 }

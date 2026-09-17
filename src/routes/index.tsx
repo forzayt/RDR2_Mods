@@ -3,6 +3,8 @@ import Hls from "hls.js";
 import { Moon, Search, Star, Sun, Upload, Volume2, VolumeX } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { Navbar } from "@/components/Navbar";
+
 const featuredVideoUrl = "https://rumble.com/hls-vod/vXOI5btQ6rU/playlist.m3u8";
 import { Button } from "@/components/ui/button";
 import mods from "@/data/mods.json";
@@ -104,28 +106,12 @@ function Index() {
   return (
     <div className={dark ? "dark" : ""}>
       <div className="min-h-screen bg-background font-body text-foreground antialiased transition-colors">
-        <header className="sticky top-0 z-30 mx-4 rounded-b-xl border-b border-border bg-surface-glass backdrop-blur-xl sm:mx-6">
-          <div className="mx-auto grid h-16 max-w-[1920px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:flex sm:px-6">
-            <a href="#catalog" className="font-display text-2xl text-foreground">
-              RDR2<span className="text-primary">·</span>Mods
-            </a>
-            <div className="flex shrink-0 items-center gap-2 sm:ml-auto">
-              <label className="hidden h-9 items-center gap-2 rounded-full bg-surface-glass px-3 ring-1 ring-border md:flex">
-                <Search className="size-4 text-muted-foreground" aria-hidden="true" />
-                <input aria-label="Search mods" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search mods" className="w-32 bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
-              </label>
-              <Button asChild size="compact" className="transition-[color,background-color,transform] active:scale-[0.96]">
-                <Link to="/upload" aria-label="Upload mod">
-                  <Upload className="size-3.5" aria-hidden="true" />
-                  <span className="hidden sm:inline">Upload mod</span>
-                </Link>
-              </Button>
-              <Button variant="ghost" size="icon" onClick={() => setDark((value) => !value)} aria-label={dark ? "Switch to day mode" : "Switch to night mode"} title={dark ? "Day mode" : "Night mode"}>
-                {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
-              </Button>
-            </div>
-          </div>
-        </header>
+        <Navbar
+          query={query}
+          onQueryChange={setQuery}
+          dark={dark}
+          onToggleDark={() => setDark((value) => !value)}
+        />
 
         <main className="mx-auto max-w-[1920px] px-4 pb-20 pt-5 sm:px-6 sm:pt-6">
           <section className="rise relative min-h-[410px] overflow-hidden rounded-xl ring-1 ring-border sm:min-h-[420px]">
