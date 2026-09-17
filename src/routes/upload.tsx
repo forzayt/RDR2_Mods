@@ -1,11 +1,12 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowLeft, Check, Github, ImagePlus, Upload } from "lucide-react";
+import { ArrowLeft, Check, ExternalLink, Github, ImagePlus, LoaderCircle, Upload } from "lucide-react";
 import { type FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { submitModIssue } from "@/server-functions/submit-mod";
 
 export const Route = createFileRoute("/upload")({
   head: () => ({
@@ -23,15 +24,18 @@ const fieldClass =
 function UploadMod() {
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
+  const [issueUrl, setIssueUrl] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(false);
     setFormError("");
+    setIssueUrl("");
 
     const formData = new FormData(event.currentTarget);
     const repositoryUrl = String(formData.get("repositoryUrl") ?? "").trim();
-    const thumbnail = formData.get("thumbnail");
+    const thumbnailUrl = String(formData.get("thumbnailUrl") ?? "").trim();
     const githubRepositoryPattern = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?\/?$/;
 
     if (!githubRepositoryPattern.test(repositoryUrl)) {
@@ -39,23 +43,32 @@ function UploadMod() {
       return;
     }
 
-    if (!(thumbnail instanceof File) || thumbnail.size === 0) {
-      setFormError("Choose a thumbnail image for your mod.");
+    if (!thumbnailUrl.startsWith("https://")) {
+      setFormError("Enter a public HTTPS URL for the thumbnail image.");
       return;
     }
 
-    if (!["image/jpeg", "image/png", "image/webp"].includes(thumbnail.type)) {
-      setFormError("The thumbnail must be a JPG, PNG, or WebP image.");
-      return;
+    setIsSubmitting(true);
+    try {
+      const result = await submitModIssue({
+        data: {
+          title: String(formData.get("title") ?? ""),
+          category: String(formData.get("category") ?? "") as "Weapons" | "Horses" | "Towns" | "Landscapes" | "Characters",
+          version: String(formData.get("version") ?? ""),
+          summary: String(formData.get("summary") ?? ""),
+          description: String(formData.get("description") ?? ""),
+          repositoryUrl,
+          thumbnailUrl,
+        },
+      });
+      setIssueUrl(result.issueUrl);
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : "The submission could not be created.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    if (thumbnail.size > 10 * 1024 * 1024) {
-      setFormError("The thumbnail must be smaller than 10 MB.");
-      return;
-    }
-
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -92,7 +105,10 @@ function UploadMod() {
             </span>
             <div>
               <p className="font-semibold">Submission ready for review</p>
-              <p className="mt-0.5 text-muted-foreground">Your form was accepted locally. Connect the upload API to publish submissions.</p>
+              <p className="mt-0.5 text-muted-foreground">Your GitHub issue was created successfully.</p>
+              <a href={issueUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline">
+                View submission issue <ExternalLink className="size-3.5" aria-hidden="true" />
+              </a>
             </div>
           </div>
         )}
@@ -153,20 +169,22 @@ function UploadMod() {
 
           <aside className="space-y-5 rounded-xl bg-surface-glass p-5 shadow-[0_12px_40px_oklch(0_0_0/0.06)] ring-1 ring-border">
             <div>
-              <h2 className="font-display text-2xl">Files</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Add the image shown on your mod card.</p>
+              <h2 className="font-display text-2xl">Thumbnail</h2>
+              <p className="mt-1 text-sm text-muted-foreground">Add a public image shown on your mod card.</p>
             </div>
 
-            <label className="group flex cursor-pointer flex-col items-center rounded-lg bg-background/55 px-4 py-6 text-center ring-1 ring-border transition-[background-color,box-shadow,transform] hover:bg-background active:scale-[0.96]">
-              <ImagePlus className="size-6 text-primary" aria-hidden="true" />
-              <span className="mt-2 text-sm font-semibold">Choose thumbnail</span>
-              <span className="mt-1 text-xs text-muted-foreground">JPG, PNG or WebP · max 10 MB</span>
-              <input type="file" name="thumbnail" required accept="image/jpeg,image/png,image/webp" className="sr-only" />
-            </label>
+            <div className="space-y-2">
+              <Label htmlFor="thumbnailUrl">Public image URL</Label>
+              <div className="relative">
+                <ImagePlus className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                <Input id="thumbnailUrl" name="thumbnailUrl" type="url" required inputMode="url" placeholder="https://example.com/mod-thumbnail.jpg" className={`${fieldClass} pl-10`} />
+              </div>
+              <p className="text-xs leading-relaxed text-muted-foreground">Use a public HTTPS image URL. It will be included in the review issue.</p>
+            </div>
 
-            <Button type="submit" className="w-full transition-[color,background-color,transform] active:scale-[0.96]">
-              <Upload className="size-4" aria-hidden="true" />
-              Submit mod
+            <Button type="submit" disabled={isSubmitting} className="w-full transition-[color,background-color,transform] active:scale-[0.96]">
+              {isSubmitting ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : <Upload className="size-4" aria-hidden="true" />}
+              {isSubmitting ? "Creating issue…" : "Submit mod"}
             </Button>
             <p className="text-center text-xs leading-relaxed text-muted-foreground">By submitting, you confirm that you have permission to share these files.</p>
           </aside>
