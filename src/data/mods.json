@@ -1,5 +1,178 @@
 [
 
+  {
+    "title": "Death Log",
+    "tag":"redm",
+    "url": "https://github.com/kamelzarandah/Death_log",
+    "thumbnail": ""
+  },
+
+
+  {
+    "title": "Alentexas Blips",
+    "tag":"redm",
+    "url": "https://github.com/creativewild/alentexas_blips",
+    "thumbnail": ""
+  },
+
+
+  {
+    "title": "Outsider Grave Robbery",
+    "tag":"redm",
+    "url": "https://github.com/outsider31000/outsider_grave_robbery",
+    "thumbnail": ""
+  },
+
+
+  {
+    "title": "BCC Utils",
+    "tag":"redm",
+    "url": "https://github.com/BryceCanyonCounty/bcc-utils",
+    "thumbnail": ""
+  },
+
+
+
+  {
+    "title": "Loading Screen",
+    "tag":"redm",
+    "url": "https://github.com/outsider31000/loadingscreen",
+    "thumbnail": "https://private-user-images.githubusercontent.com/64194468/386206606-cbf4fa09-069d-413b-af0f-0cd665029875.jpg?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODk2NjM4NjksIm5iZiI6MTc4OTY2MzU2OSwicGF0aCI6Ii82NDE5NDQ2OC8zODYyMDY2MDYtY2JmNGZhMDktMDY5ZC00MTNiLWFmMGYtMGNkNjY1MDI5ODc1LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA5MTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwOTE3VDE2NDYwOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTYwZWY0ODIyNTBkNDFmYzRjOTFjZTU2MmM3YjM5NDUxYTAxNzZjYmNlOWM5MTZiNmMyOGIwZjVjZDU1ZTY1MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRmpwZWcifQ.CNAktIEY89bqlVCOS33mFp-xTqw20L7z-Eh5YUXy7Oc"
+  },
+
+
+
+
+
+
+  {
+    "title": "Outsider Radial Menu",
+    "tag":"redm",
+    "url": "https://github.com/outsider31000/outsider_radial_menu",
+    "thumbnail": ""
+  },
+
+
+
+
+
+
+  {
+    "title": "Syn Minigame",
+    "tag":"redm",
+    "url": "https://github.com/outsider31000/syn_minigame",
+    "thumbnail": ""
+  },
+
+
+
+
+
+
+  {
+    "title": "RedM Info",
+    "tag":"redm",
+    "url": "https://github.com/Nowimps8/RedM-info",
+    "thumbnail": ""
+  },
+
+
+
+
+
+
+  {
+    "title": "RedEM RP Farmer Job",
+    "tag":"redm",
+    "url": "https://github.com/RedEM-RP/redemrp_farmerjob",
+    "thumbnail": ""
+  },
+
+
+
+
+
+  {
+    "title": "PMA Voice",
+    "tag":"redm",
+    "url": "https://github.com/AvarianKnight/pma-voice",
+    "thumbnail": ""
+  },
+
+
+
+
+
+
+  {
+    "title": "Shamey Doctor",
+    "tag":"redm",
+    "url": "https://github.com/ShameyWinehouse/shamey-doctor",
+    "thumbnail": ""
+  },
+
+
+
+
+
+  {
+    "title": "Shamey Deliveries",
+    "tag":"redm",
+    "url": "https://github.com/ShameyWinehouse/shamey-deliveries",
+    "thumbnail": ""
+  },
+
+
+
+
+
+  {
+    "title": "JC Mining Revamped",
+    "tag":"redm",
+    "url": "https://github.com/Jewsie/jc-mining-revamped",
+    "thumbnail": ""
+  },
+
+
+
+
+
+  {
+    "title": "BCC Minigames",
+    "tag":"redm",
+    "url": "https://github.com/BryceCanyonCounty/bcc-minigames",
+    "thumbnail": ""
+  },
+
+
+
+
+
+  {
+    "title": "RedM Emotes",
+    "tag":"redm",
+    "url": "https://github.com/kibook/redm-emotes",
+    "thumbnail": ""
+  },
+
+
+
+  {
+    "title": "BCC Custom Blips",
+    "tag":"redm",
+    "url": "https://github.com/BryceCanyonCounty/bcc-customblips",
+    "thumbnail": ""
+  },
+
+
+
+
+  {
+    "title": "PopDensity",
+    "tag":"redm",
+    "url": "https://github.com/kibook/popdensity",
+    "thumbnail": ""
+  },
 
 
 
@@ -7,7 +180,7 @@
     "title": "RedM Addon Vehicles",
     "tag":"redm",
     "url": "https://github.com/Silonugget/RedM-Addon-Vehicles",
-    "thumbnail": "https://private-user-images.githubusercontent.com/127679210/654033885-f05935b3-d21d-466a-855d-6f88dfee9d03.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODk2NjM0MzQsIm5iZiI6MTc4OTY2MzEzNCwicGF0aCI6Ii8xMjc2NzkyMTAvNjU0MDMzODg1LWYwNTkzNWIzLWQyMWQtNDY2YS04NTVkLTZmODhkZmVlOWQwMy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwOTE3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDkxN1QxNjM4NTRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mYWRlNjFkODMzYTE4MGU5YTYyZGYwNjk3M2E2ZmUwZTA0ZTIxNzQ4NzJjMDhhNWIxZjA5NTBlNDVlNTRjZDE0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.QPD8vP1v_ZbeNGkMNc3j-KvznummUKbhdItm6LKxLpw"
+    "thumbnail": "https://raw.githubusercontent.com/forzayt/RDR2_Mods/submission-assets/submission-thumbnails/redm-addon-vehicles-7f7a44db-8db9-4ebf-99ee-5483da20236a.png"
   },
 
 
