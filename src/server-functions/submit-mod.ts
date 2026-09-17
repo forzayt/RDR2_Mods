@@ -3,8 +3,6 @@ import { z } from "zod";
 
 const submissionSchema = z.object({
   title: z.string().trim().min(3).max(100),
-  summary: z.string().trim().min(10).max(140),
-
   repositoryUrl: z.string().trim().url().max(300),
   thumbnailDataUrl: z.string().max(7_100_000),
 });
@@ -139,9 +137,6 @@ export const submitModIssue = createServerFn({ method: "POST" })
       `- **Title:** ${data.title}`,
       `- **Repository:** ${data.repositoryUrl}`,
       `- **Thumbnail:** ${thumbnailUrl}`,
-      "",
-      "### Summary",
-      data.summary,
       "",
       "---",
       "Submitted through the RDR2 Mods upload form.",
