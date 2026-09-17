@@ -13,7 +13,6 @@ import { type ChangeEvent, type FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { submitModIssue } from "@/server-functions/submit-mod";
 
 export const Route = createFileRoute("/upload")({
@@ -32,7 +31,7 @@ const fieldClass =
 const validationLabels: Record<string, string> = {
   title: "Mod title",
   summary: "Short summary",
-  description: "Description",
+
   repositoryUrl: "GitHub repository URL",
   tag: "Tag",
   thumbnailDataUrl: "Thumbnail",
@@ -115,7 +114,7 @@ function UploadMod() {
 
     const formData = new FormData(event.currentTarget);
     const title = String(formData.get("title") ?? "").trim();
-    const description = String(formData.get("description") ?? "").trim();
+
     const repositoryUrl = String(formData.get("repositoryUrl") ?? "").trim();
     const tag = String(formData.get("tag") ?? "").trim();
     const githubRepositoryPattern =
@@ -126,10 +125,7 @@ function UploadMod() {
       return;
     }
 
-    if (description.length < 20) {
-      setFormError("Description must be at least 20 characters.");
-      return;
-    }
+
 
     if (!githubRepositoryPattern.test(repositoryUrl)) {
       setFormError(
@@ -148,7 +144,6 @@ function UploadMod() {
       const result = await submitModIssue({
         data: {
           title,
-          description,
           repositoryUrl,
           tag,
           thumbnailDataUrl,
@@ -255,19 +250,6 @@ function UploadMod() {
               </div>
 
 
-              <div className="space-y-2 sm:col-span-2">
-                <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  name="description"
-                  required
-                  minLength={20}
-                  maxLength={10000}
-                  placeholder="Describe the changes, installation steps, and compatibility notes."
-                  className="min-h-40 rounded-lg border-0 bg-surface-glass px-4 py-3 shadow-none ring-1 ring-border transition-[box-shadow,background-color] focus-visible:ring-2"
-                />
-                <p className="text-xs text-muted-foreground">At least 20 characters.</p>
-              </div>
 
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="repositoryUrl">GitHub repository URL</Label>

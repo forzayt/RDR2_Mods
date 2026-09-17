@@ -2,14 +2,12 @@
 
   {
     "title": "BCC ColorMap",
-    "description": "BCC ColorMap",
     "tag":"redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-colormap",
     "thumbnail": "https://camo.githubusercontent.com/134f00d874bf453217d76486917b555f999df23b77be48e18cf1087c142ca0bc/68747470733a2f2f66656d67612e636f6d3a383038302f696d616765732f73616d706c65732f73637265656e73686f74732f77616e7465645f726567696f6e735f6578616d706c652e706e67"
   },
   {
     "title": "BCC GoldPanning",
-    "description": "BCC GoldPanning",
     "tag":"redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-goldpanning",
     "thumbnail": ""

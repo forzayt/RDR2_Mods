@@ -97,7 +97,6 @@ function Index() {
     return mods.filter(
       (mod) =>
         mod.title.toLowerCase().includes(q) ||
-        mod.description.toLowerCase().includes(q) ||
         (mod.tag && mod.tag.toLowerCase().includes(q))
     );
   }, [query]);
