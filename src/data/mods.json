@@ -1,6 +1,12 @@
 [
 
   {
+    "title": "BCC Doorlocks",
+    "tag":"redm",
+    "url": "https://github.com/BryceCanyonCounty/bcc-doorlocks",
+    "thumbnail": ""
+  },
+  {
     "title": "BCC Rewards",
     "tag":"redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-rewards",
