@@ -54,7 +54,7 @@ const categoryCards = [
     tagMatch: "sp",
     accent: "from-amber-500/10 to-transparent border-amber-500/30 text-amber-500",
     image: "/NicePng_red-beard-png_1934462.png",
-    imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
+    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[50%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity",
   },
   {
     id: "redm",
@@ -64,7 +64,7 @@ const categoryCards = [
     tagMatch: "redm",
     accent: "from-rose-500/10 to-transparent border-rose-500/30 text-rose-500",
     image: "/red-dead-online-blood-money-artwork-png.png",
-    imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
+    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[55%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity scale-110 origin-bottom-right",
   },
   {
     id: "tools",
@@ -74,7 +74,7 @@ const categoryCards = [
     tagMatch: "tools",
     accent: "from-sky-500/10 to-transparent border-sky-500/30 text-sky-500",
     image: "/RedDeadOnline_Artwork_BountyHunter_Expansion_Character_PNG_Transparent.png",
-    imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
+    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[50%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity",
   },
   {
     id: "visuals",
@@ -84,7 +84,7 @@ const categoryCards = [
     tagMatch: "visuals",
     accent: "from-emerald-500/10 to-transparent border-emerald-500/30 text-emerald-500",
     image: "/RedDeadOnline_Artwork_Standalone_Characters_PNG_Transparent.png",
-    imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
+    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[55%] object-contain object-bottom pointer-events-none opacity-50 group-hover:opacity-90 transition-opacity scale-115 origin-bottom-right",
   },
 ];
 
