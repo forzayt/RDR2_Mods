@@ -113,7 +113,7 @@ function ModCard({ mod, index, stars }: ModCardProps) {
 }
 
 function Index() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [query, setQuery] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);

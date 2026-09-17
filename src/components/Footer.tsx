@@ -8,10 +8,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
           {/* Brand Info */}
           <div className="md:col-span-6 lg:col-span-5">
-            <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="flex h-12 w-auto items-center justify-center rounded-full bg-neutral-950 px-4 py-2 ring-1 ring-neutral-800 shadow-md transition-all group-hover:bg-black group-hover:ring-neutral-700 active:scale-[0.98]">
-                <img src={rdr2Logo} alt="RDR2 Mods Logo" className="h-7 sm:h-8 w-auto object-contain" />
-              </div>
+            <Link to="/" className="inline-block transition-transform hover:scale-[1.02] active:scale-[0.98]">
+              <img src={rdr2Logo} alt="RDR2 Mods Logo" className="h-11 sm:h-14 w-auto object-contain" />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground font-body">
               The open community catalog for Red Dead Redemption 2 modifications, server scripts, and standalone enhancements.

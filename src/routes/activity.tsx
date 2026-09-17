@@ -60,7 +60,7 @@ interface ActivityFeedItem {
 import { getGithubStarsBatch } from "@/server-functions/get-stars";
 
 export function ActivityPage() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [starCounts, setStarCounts] = useState<Record<string, number>>({});
 
   useEffect(() => {

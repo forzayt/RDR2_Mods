@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { type ChangeEvent, type FormEvent, useState } from "react";
 
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -160,23 +161,24 @@ function UploadMod() {
     }
   };
 
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
 
   return (
     <div className={dark ? "dark" : ""}>
-      <div className="min-h-screen bg-background font-body text-foreground antialiased">
-        <Navbar dark={dark} onToggleDark={() => setDark(!dark)} />
+      <div className="min-h-screen bg-background font-body text-foreground antialiased flex flex-col justify-between">
+        <div>
+          <Navbar dark={dark} onToggleDark={() => setDark(!dark)} />
 
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="max-w-2xl">
-          <p className="font-cond text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-            Share your work
-          </p>
-          <h1 className="mt-2 font-display text-5xl leading-none sm:text-6xl">Upload a mod</h1>
-          <p className="mt-3 max-w-xl text-muted-foreground">
-            Add the essentials below. Every submission is reviewed before it appears in the catalog.
-          </p>
-        </div>
+          <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+            <div className="max-w-2xl">
+              <p className="font-cond text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+                Share your work
+              </p>
+              <h1 className="mt-2 font-display text-5xl leading-none sm:text-6xl">Upload a mod</h1>
+              <p className="mt-3 max-w-xl text-muted-foreground">
+                Add the essentials below. Every submission is reviewed before it appears in the catalog.
+              </p>
+            </div>
 
         {submitted && (
           <div
@@ -339,6 +341,8 @@ function UploadMod() {
           </aside>
         </form>
       </main>
+        </div>
+        <Footer />
       </div>
     </div>
   );

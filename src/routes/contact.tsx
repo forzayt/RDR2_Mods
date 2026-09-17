@@ -34,7 +34,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
