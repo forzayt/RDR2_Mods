@@ -106,14 +106,11 @@ function Index() {
             <div className="absolute inset-0 bg-gradient-to-t from-hero/80 via-hero/15 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-7">
               <div className="max-w-2xl min-w-0">
-                <span className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase text-primary-foreground">Featured</span>
-                <h1 className="mt-2 font-display text-5xl leading-none text-hero-foreground sm:text-6xl">The Ridge Line</h1>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-hero-foreground/85 sm:text-base">A sweeping landscape overhaul with volumetric dawn light, redrawn ridgelines, and a rebuilt river valley.</p>
-                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-cond text-sm uppercase text-hero-foreground/70">
-                  <span className="text-hero-foreground">by Meridian Forge</span><span>★ 4.9</span><span>184.3k downloads</span><span>Updated Feb 09</span>
-                </div>
+                <span className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase text-primary-foreground">Welcome</span>
+                <h1 className="mt-2 font-display text-5xl leading-none text-hero-foreground sm:text-6xl">RDR2 Mods</h1>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-hero-foreground/85 sm:text-base">Discover the best community-made mods for Red Dead Redemption 2. Browse, download, and enhance your frontier experience.</p>
               </div>
-              <Button variant="paper">View mod</Button>
+              <Button variant="paper" asChild><a href="#catalog">Browse mods</a></Button>
             </div>
           </section>
 
