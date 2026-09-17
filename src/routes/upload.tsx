@@ -1,5 +1,13 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowLeft, Check, ExternalLink, Github, ImagePlus, LoaderCircle, Upload } from "lucide-react";
+import {
+  ArrowLeft,
+  Check,
+  ExternalLink,
+  Github,
+  ImagePlus,
+  LoaderCircle,
+  Upload,
+} from "lucide-react";
 import { type ChangeEvent, type FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -20,6 +28,42 @@ export const Route = createFileRoute("/upload")({
 
 const fieldClass =
   "h-11 rounded-lg border-0 bg-surface-glass px-4 shadow-none ring-1 ring-border transition-[box-shadow,background-color] focus-visible:ring-2";
+
+const validationLabels: Record<string, string> = {
+  title: "Mod title",
+  summary: "Short summary",
+  description: "Description",
+  repositoryUrl: "GitHub repository URL",
+  thumbnailDataUrl: "Thumbnail",
+};
+
+function getSubmissionErrorMessage(error: unknown) {
+  if (!(error instanceof Error)) return "The submission could not be created.";
+
+  try {
+    const issues = JSON.parse(error.message) as Array<{
+      message?: string;
+      path?: Array<string | number>;
+    }>;
+    if (Array.isArray(issues)) {
+      const messages = issues
+        .map((issue) => {
+          if (!issue.message) return "";
+          const field = issue.path?.[0];
+          return typeof field === "string" && validationLabels[field]
+            ? `${validationLabels[field]}: ${issue.message}`
+            : issue.message;
+        })
+        .filter(Boolean);
+
+      if (messages.length) return messages.join(" ");
+    }
+  } catch {
+    // Non-validation errors already contain a user-facing message.
+  }
+
+  return error.message || "The submission could not be created.";
+}
 
 function UploadMod() {
   const [submitted, setSubmitted] = useState(false);
@@ -63,11 +107,32 @@ function UploadMod() {
     setIssueUrl("");
 
     const formData = new FormData(event.currentTarget);
+    const title = String(formData.get("title") ?? "").trim();
+    const summary = String(formData.get("summary") ?? "").trim();
+    const description = String(formData.get("description") ?? "").trim();
     const repositoryUrl = String(formData.get("repositoryUrl") ?? "").trim();
-    const githubRepositoryPattern = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?\/?$/;
+    const githubRepositoryPattern =
+      /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?\/?$/;
+
+    if (title.length < 3) {
+      setFormError("Mod title must be at least 3 characters.");
+      return;
+    }
+
+    if (summary.length < 10) {
+      setFormError("Short summary must be at least 10 characters.");
+      return;
+    }
+
+    if (description.length < 20) {
+      setFormError("Description must be at least 20 characters.");
+      return;
+    }
 
     if (!githubRepositoryPattern.test(repositoryUrl)) {
-      setFormError("Enter a direct GitHub repository URL, such as https://github.com/owner/repository.");
+      setFormError(
+        "Enter a direct GitHub repository URL, such as https://github.com/owner/repository.",
+      );
       return;
     }
 
@@ -80,9 +145,9 @@ function UploadMod() {
     try {
       const result = await submitModIssue({
         data: {
-          title: String(formData.get("title") ?? ""),
-          summary: String(formData.get("summary") ?? ""),
-          description: String(formData.get("description") ?? ""),
+          title,
+          summary,
+          description,
           repositoryUrl,
           thumbnailDataUrl,
         },
@@ -91,7 +156,7 @@ function UploadMod() {
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
-      setFormError(error instanceof Error ? error.message : "The submission could not be created.");
+      setFormError(getSubmissionErrorMessage(error));
     } finally {
       setIsSubmitting(false);
     }
@@ -105,8 +170,15 @@ function UploadMod() {
             SADDLE<span className="text-primary">·</span>MARKET
           </Link>
           <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
-          <span className="hidden font-cond text-sm uppercase text-muted-foreground sm:block">Creator submission</span>
-          <Button asChild variant="ghost" size="compact" className="ml-auto transition-[color,background-color,transform] active:scale-[0.96]">
+          <span className="hidden font-cond text-sm uppercase text-muted-foreground sm:block">
+            Creator submission
+          </span>
+          <Button
+            asChild
+            variant="ghost"
+            size="compact"
+            className="ml-auto transition-[color,background-color,transform] active:scale-[0.96]"
+          >
             <Link to="/">
               <ArrowLeft className="size-3.5" aria-hidden="true" />
               Back to mods
@@ -117,7 +189,9 @@ function UploadMod() {
 
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="max-w-2xl">
-          <p className="font-cond text-sm font-semibold uppercase tracking-[0.16em] text-primary">Share your work</p>
+          <p className="font-cond text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+            Share your work
+          </p>
           <h1 className="mt-2 font-display text-5xl leading-none sm:text-6xl">Upload a mod</h1>
           <p className="mt-3 max-w-xl text-muted-foreground">
             Add the essentials below. Every submission is reviewed before it appears in the catalog.
@@ -125,53 +199,112 @@ function UploadMod() {
         </div>
 
         {submitted && (
-          <div className="mt-7 flex items-start gap-3 rounded-xl bg-primary/10 p-4 text-sm ring-1 ring-primary/25" role="status">
+          <div
+            className="mt-7 flex items-start gap-3 rounded-xl bg-primary/10 p-4 text-sm ring-1 ring-primary/25"
+            role="status"
+          >
             <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <Check className="size-4" aria-hidden="true" />
             </span>
             <div>
               <p className="font-semibold">Submission ready for review</p>
-              <p className="mt-0.5 text-muted-foreground">Your GitHub issue was created successfully.</p>
-              <a href={issueUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline">
-                View submission issue <ExternalLink className="size-3.5" aria-hidden="true" />
+              <p className="mt-0.5 text-muted-foreground">
+                Your mod was submitted successfully.
+              </p>
+              <a
+                href={issueUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+              >
+                View submission <ExternalLink className="size-3.5" aria-hidden="true" />
               </a>
             </div>
           </div>
         )}
 
         {formError && (
-          <div className="mt-7 rounded-xl bg-destructive/10 p-4 text-sm text-destructive ring-1 ring-destructive/25" role="alert">
+          <div
+            className="mt-7 rounded-xl bg-destructive/10 p-4 text-sm text-destructive ring-1 ring-destructive/25"
+            role="alert"
+          >
             <p className="font-semibold">Check your submission</p>
             <p className="mt-0.5">{formError}</p>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start"
+        >
           <div className="rounded-xl bg-surface-glass p-5 shadow-[0_12px_40px_oklch(0_0_0/0.06)] ring-1 ring-border sm:p-7">
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="title">Mod title</Label>
-                <Input id="title" name="title" required placeholder="e.g. The Ridge Line" className={fieldClass} />
+                <Input
+                  id="title"
+                  name="title"
+                  required
+                  minLength={3}
+                  maxLength={100}
+                  placeholder="e.g. The Ridge Line"
+                  className={fieldClass}
+                />
               </div>
 
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="summary">Short summary</Label>
-                <Input id="summary" name="summary" required maxLength={140} placeholder="What makes this mod worth installing?" className={fieldClass} />
-                <p className="text-xs text-muted-foreground">Keep it concise—140 characters maximum.</p>
+                <Input
+                  id="summary"
+                  name="summary"
+                  required
+                  minLength={10}
+                  maxLength={140}
+                  placeholder="What makes this mod worth installing?"
+                  className={fieldClass}
+                />
+                <p className="text-xs text-muted-foreground">10–140 characters.</p>
               </div>
 
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="description">Description</Label>
-                <Textarea id="description" name="description" required placeholder="Describe the changes, installation steps, and compatibility notes." className="min-h-40 rounded-lg border-0 bg-surface-glass px-4 py-3 shadow-none ring-1 ring-border transition-[box-shadow,background-color] focus-visible:ring-2" />
+                <Textarea
+                  id="description"
+                  name="description"
+                  required
+                  minLength={20}
+                  maxLength={10000}
+                  placeholder="Describe the changes, installation steps, and compatibility notes."
+                  className="min-h-40 rounded-lg border-0 bg-surface-glass px-4 py-3 shadow-none ring-1 ring-border transition-[box-shadow,background-color] focus-visible:ring-2"
+                />
+                <p className="text-xs text-muted-foreground">At least 20 characters.</p>
               </div>
 
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="repositoryUrl">GitHub repository URL</Label>
                 <div className="relative">
-                  <Github className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
-                  <Input id="repositoryUrl" name="repositoryUrl" type="url" required inputMode="url" autoCapitalize="none" autoCorrect="off" spellCheck={false} placeholder="https://github.com/owner/repository" pattern="https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?/?" title="Enter a direct GitHub repository URL, such as https://github.com/owner/repository" className={`${fieldClass} pl-11`} />
+                  <Github
+                    className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                    aria-hidden="true"
+                  />
+                  <Input
+                    id="repositoryUrl"
+                    name="repositoryUrl"
+                    type="url"
+                    required
+                    inputMode="url"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    placeholder="https://github.com/owner/repository"
+                    pattern="https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?/?"
+                    title="Enter a direct GitHub repository URL, such as https://github.com/owner/repository"
+                    className={`${fieldClass} pl-11`}
+                  />
                 </div>
-                <p className="text-xs text-muted-foreground">Link directly to the repository—not a profile, release, branch, or file.</p>
+                <p className="text-xs text-muted-foreground">
+                  Link directly to the repository—not a profile, release, branch, or file.
+                </p>
               </div>
             </div>
           </div>
@@ -179,25 +312,52 @@ function UploadMod() {
           <aside className="space-y-5 rounded-xl bg-surface-glass p-5 shadow-[0_12px_40px_oklch(0_0_0/0.06)] ring-1 ring-border">
             <div>
               <h2 className="font-display text-2xl">Thumbnail</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Upload the image shown on your mod card.</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Upload the image shown on your mod card.
+              </p>
             </div>
 
             <label className="group flex cursor-pointer flex-col items-center rounded-lg bg-background/55 px-4 py-6 text-center ring-1 ring-border transition-[background-color,box-shadow,transform] hover:bg-background focus-within:ring-2 focus-within:ring-ring active:scale-[0.96]">
               {thumbnailDataUrl ? (
-                <img src={thumbnailDataUrl} alt="Selected thumbnail preview" className="aspect-[4/3] w-full rounded-md object-cover outline outline-1 outline-black/10 dark:outline-white/10" />
+                <img
+                  src={thumbnailDataUrl}
+                  alt="Selected thumbnail preview"
+                  className="aspect-[4/3] w-full rounded-md object-cover outline outline-1 outline-black/10 dark:outline-white/10"
+                />
               ) : (
                 <ImagePlus className="size-7 text-primary" aria-hidden="true" />
               )}
-              <span className="mt-3 max-w-full truncate text-sm font-semibold">{thumbnailName || "Choose thumbnail"}</span>
-              <span className="mt-1 text-xs text-muted-foreground">JPG, PNG or WebP · max 5 MB</span>
-              <input type="file" name="thumbnail" required accept="image/jpeg,image/png,image/webp" onChange={handleThumbnailChange} className="sr-only" />
+              <span className="mt-3 max-w-full truncate text-sm font-semibold">
+                {thumbnailName || "Choose thumbnail"}
+              </span>
+              <span className="mt-1 text-xs text-muted-foreground">
+                JPG, PNG or WebP · max 5 MB
+              </span>
+              <input
+                type="file"
+                name="thumbnail"
+                required
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleThumbnailChange}
+                className="sr-only"
+              />
             </label>
 
-            <Button type="submit" disabled={isSubmitting} className="w-full transition-[color,background-color,transform] active:scale-[0.96]">
-              {isSubmitting ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : <Upload className="size-4" aria-hidden="true" />}
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full transition-[color,background-color,transform] active:scale-[0.96]"
+            >
+              {isSubmitting ? (
+                <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <Upload className="size-4" aria-hidden="true" />
+              )}
               {isSubmitting ? "Creating issue…" : "Submit mod"}
             </Button>
-            <p className="text-center text-xs leading-relaxed text-muted-foreground">By submitting, you confirm that you have permission to share these files.</p>
+            <p className="text-center text-xs leading-relaxed text-muted-foreground">
+              By submitting, you confirm that you have permission to share these files.
+            </p>
           </aside>
         </form>
       </main>
