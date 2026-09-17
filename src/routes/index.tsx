@@ -35,7 +35,7 @@ function Index() {
   const [dark, setDark] = useState(false);
   const [query, setQuery] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -97,7 +97,7 @@ function Index() {
           <section className="rise relative min-h-[410px] overflow-hidden rounded-xl ring-1 ring-border sm:min-h-[420px]">
             <video
                 ref={videoRef}
-                // muted
+                muted
                 loop
                 preload="auto"
                 playsInline
