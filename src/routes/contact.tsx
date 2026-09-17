@@ -22,14 +22,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact & Support | RDR2 Mods" },
-      { name: "description", content: "Get in touch with the RDR2 Mods community team or report issues." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Contact Support & Community Team - RDR2 Mods",
+      description: "Reach out to the RDR2 Mods community maintainers, report broken downloads, submit feedback, or ask modding questions.",
+      keywords: ["RDR2 Mods Contact", "RDR2 Modding Support", "Report RDR2 Mod Issue"],
+      path: "/contact",
+      image: "/banner.png",
+      jsonLd: [
+        {
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "Contact RDR2 Mods Support",
+          url: "https://rdr2mods.com/contact",
+        },
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Contact", item: "/contact" },
+        ]),
+      ],
+    }),
   component: ContactPage,
 });
 

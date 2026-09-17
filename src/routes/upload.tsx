@@ -24,14 +24,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitModIssue } from "@/server-functions/submit-mod";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/upload")({
-  head: () => ({
-    meta: [
-      { title: "Upload a Mod | RDR2 Mods" },
-      { name: "description", content: "Submit a Red Dead Redemption 2 mod or RedM script to the community catalog." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Upload & Share RDR2 Mods - Submit Script or RedM Resource",
+      description: "Submit your Red Dead Redemption 2 single player mod, ASI script, LML package, or RedM server script to the open-source community catalog.",
+      keywords: ["Upload RDR2 Mod", "Submit RDR2 Script", "Share RedM Resource", "Publish RDR2 Trainer"],
+      path: "/upload",
+      image: "/banner.png",
+      jsonLd: [
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Upload Mod", item: "/upload" },
+        ]),
+      ],
+    }),
   component: UploadMod,
 });
 

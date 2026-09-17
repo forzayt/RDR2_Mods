@@ -2,14 +2,39 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/guide/scripthook")({
-  head: () => ({
-    meta: [
-      { title: "Script Hook RDR2 Setup Guide | RDR2 Mods" },
-      { name: "description", content: "Installation guide for Alexander Blade's Script Hook RDR2 and dinput8.dll ASI loader." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Script Hook RDR2 Installation Guide - Alexander Blade ASI Loader",
+      description: "Complete guide on how to download, install, and configure Alexander Blade's Script Hook RDR2 and dinput8.dll ASI loader for Red Dead Redemption 2.",
+      keywords: ["Script Hook RDR2", "Alexander Blade", "dinput8.dll", "RDR2 ASI Loader", "RDR2 Native Trainer", "RDR2 Mod Loader Guide"],
+      path: "/guide/scripthook",
+      image: "/rdr2modslg.png",
+      jsonLd: [
+        SchemaOrg.techArticle({
+          title: "Script Hook RDR2 Setup Guide",
+          description: "Step-by-step guide for installing Alexander Blade Script Hook RDR2 and dinput8.dll ASI loader.",
+          path: "/guide/scripthook",
+        }),
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Guides", item: "/guide" },
+          { name: "Script Hook RDR2", item: "/guide/scripthook" },
+        ]),
+        SchemaOrg.faqPage([
+          {
+            question: "What is Script Hook RDR2?",
+            answer: "Script Hook RDR2 is a library created by Alexander Blade that allows custom C++ .asi scripts and trainers to run inside Red Dead Redemption 2 single player.",
+          },
+          {
+            question: "Where do I extract ScriptHookRDR2.dll and dinput8.dll?",
+            answer: "Extract ScriptHookRDR2.dll, dinput8.dll, and NativeTrainer.asi directly into your root Red Dead Redemption 2 game folder alongside RDR2.exe.",
+          },
+        ]),
+      ],
+    }),
   component: ScriptHookGuidePage,
 });
 

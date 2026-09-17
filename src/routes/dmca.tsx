@@ -3,14 +3,16 @@ import { FileText, AlertTriangle, Send, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/dmca")({
-  head: () => ({
-    meta: [
-      { title: "DMCA & Copyright Policy | RDR2 Mods" },
-      { name: "description", content: "Digital Millennium Copyright Act (DMCA) notice procedure and copyright infringement reporting for RDR2 Mods." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "DMCA Copyright Takedown Policy & Notice Procedure - RDR2 Mods",
+      description: "Digital Millennium Copyright Act (DMCA) policy, copyright infringement notification procedure, and takedown contact details for RDR2 Mods.",
+      path: "/dmca",
+      image: "/banner.png",
+    }),
   component: DmcaPage,
 });
 

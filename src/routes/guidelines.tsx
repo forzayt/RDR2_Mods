@@ -3,14 +3,16 @@ import { CheckCircle2, XCircle, AlertCircle, ArrowRight, HeartHandshake } from "
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/guidelines")({
-  head: () => ({
-    meta: [
-      { title: "Community Guidelines | RDR2 Mods" },
-      { name: "description", content: "Community standards, modding guidelines, and code of conduct for RDR2 Mods." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Community Guidelines & Outlaw Code of Conduct - RDR2 Mods",
+      description: "Community standards, mod safety requirements, moderation policies, and creator code of conduct for RDR2 Mods.",
+      path: "/guidelines",
+      image: "/banner.png",
+    }),
   component: GuidelinesPage,
 });
 

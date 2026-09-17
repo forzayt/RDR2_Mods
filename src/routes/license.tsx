@@ -3,14 +3,16 @@ import { Terminal, FileCode, CheckCircle2, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/license")({
-  head: () => ({
-    meta: [
-      { title: "Open Source & License | RDR2 Mods" },
-      { name: "description", content: "Open source licensing, third-party software disclosures, and fan content disclaimers for RDR2 Mods." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Open Source License & Rockstar Games Disclaimer - RDR2 Mods",
+      description: "Open source licensing disclosures, MIT license details, and Take-Two / Rockstar Games fan content policy statements.",
+      path: "/license",
+      image: "/banner.png",
+    }),
   component: LicensePage,
 });
 

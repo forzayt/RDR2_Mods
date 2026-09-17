@@ -3,14 +3,16 @@ import { Shield, ArrowRight, Eye, Database } from "lucide-react";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy | RDR2 Mods" },
-      { name: "description", content: "Privacy policy and data collection transparency report for RDR2 Mods." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Privacy Policy - Data Privacy & Transparency",
+      description: "Read the RDR2 Mods privacy policy detailing data practices, cookies, analytics transparency, and user rights.",
+      path: "/privacy",
+      image: "/banner.png",
+    }),
   component: PrivacyPage,
 });
 

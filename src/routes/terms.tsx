@@ -3,14 +3,16 @@ import { Shield, AlertTriangle, FileText, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service | RDR2 Mods" },
-      { name: "description", content: "Terms of service and user agreements for RDR2 Mods platform." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "Terms of Service - RDR2 Mods Platform Guidelines",
+      description: "Terms of service, usage guidelines, safety rules, and acceptable content standards for RDR2 Mods.",
+      path: "/terms",
+      image: "/banner.png",
+    }),
   component: TermsPage,
 });
 

@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingGithub } from "@/components/FloatingGithub";
@@ -141,31 +142,35 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RDR2 Mods" },
-      { name: "description", content: "Browse community-made mods for Red Dead Redemption 2." },
-      { name: "author", content: "RDR2 Mods" },
-      { property: "og:title", content: "RDR2 Mods" },
-      { property: "og:description", content: "Browse community-made mods for Red Dead Redemption 2." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600&display=swap" },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
-    ],
-  }),
+  head: () => {
+    const rootSeo = generateSeoMeta({
+      title: "RDR2 Mods - Red Dead Redemption 2 Modding Hub",
+      description: "Discover, download, and share community-made Red Dead Redemption 2 single player mods, Script Hook scripts, LML packages, and RedM server tools.",
+      keywords: ["RDR2 Mods", "Red Dead Redemption 2 Mods", "Script Hook RDR2", "Lenny Mod Loader", "RedM Scripts", "RDR2 Trainers"],
+      path: "/",
+      image: "/rdr2modslg.png",
+      jsonLd: [SchemaOrg.website(), SchemaOrg.organization()],
+    });
+
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        ...rootSeo.meta,
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600&display=swap" },
+        { rel: "icon", href: "/favicon.png", type: "image/png" },
+        { rel: "apple-touch-icon", href: "/favicon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
+        ...rootSeo.links,
+      ],
+      scripts: rootSeo.scripts,
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

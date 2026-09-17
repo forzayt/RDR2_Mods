@@ -2,14 +2,23 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/guide/")({
-  head: () => ({
-    meta: [
-      { title: "Modding Guides & Tutorials | RDR2 Mods" },
-      { name: "description", content: "Dedicated setup and installation guides for Script Hook RDR2, Lenny's Mod Loader (LML), RedM server scripts, and Reshade." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "RDR2 Modding Guides - Script Hook, LML, RedM & ReShade Installation",
+      description: "Step-by-step installation guides and troubleshooting tutorials for Red Dead Redemption 2 PC modding, Script Hook RDR2, Lenny Mod Loader, and RedM multiplayer.",
+      keywords: ["RDR2 Modding Guides", "Script Hook Installation", "LML Tutorial", "RedM Server Setup", "RDR2 ReShade Guide"],
+      path: "/guide",
+      image: "/rdr2modslg.png",
+      jsonLd: [
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Guides", item: "/guide" },
+        ]),
+      ],
+    }),
   component: GuideIndexPage,
 });
 

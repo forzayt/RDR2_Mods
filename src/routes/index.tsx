@@ -31,6 +31,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -58,60 +59,56 @@ const categoryCards = [
   {
     id: "redm",
     title: "RedM Server Scripts",
-    desc: "Lua resources, VORP/RSG frameworks & server utilities.",
+    desc: "Lua scripts, server frameworks & multiplayer resources.",
     path: "/catalog?category=redm",
     tagMatch: "redm",
-    accent: "from-red-500/10 to-transparent border-red-500/30 text-red-500",
+    accent: "from-rose-500/10 to-transparent border-rose-500/30 text-rose-500",
     image: "/red-dead-online-blood-money-artwork-png.png",
-    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[55%] object-contain object-bottom pointer-events-none opacity-45 group-hover:opacity-85 transition-opacity scale-110 origin-bottom-right",
+    imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
   },
   {
-    id: "graphics",
-    title: "Graphics & ReShade",
-    desc: "Vulkan color presets, shaders & photorealistic enhancements.",
-    path: "/catalog?category=graphics",
-    tagMatch: "graphics",
+    id: "tools",
+    title: "Modding Utilities",
+    desc: "Script Hook, LML, mod managers & core engine loaders.",
+    path: "/catalog?category=tools",
+    tagMatch: "tools",
     accent: "from-sky-500/10 to-transparent border-sky-500/30 text-sky-500",
     image: "/RedDeadOnline_Artwork_BountyHunter_Expansion_Character_PNG_Transparent.png",
     imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
   },
   {
-    id: "outfits",
-    title: "Models & Arsenal",
-    desc: "Ped replacements, clothing, weapons & vehicle additions.",
-    path: "/catalog?category=outfits",
-    tagMatch: ["outfits", "vehicles", "weapons"],
+    id: "visuals",
+    title: "Graphics & Visuals",
+    desc: "ReShade presets, texture mods, weapons & weather enhancements.",
+    path: "/catalog?category=visuals",
+    tagMatch: "visuals",
     accent: "from-emerald-500/10 to-transparent border-emerald-500/30 text-emerald-500",
     image: "/RedDeadOnline_Artwork_Standalone_Characters_PNG_Transparent.png",
-    imageClass: "absolute right-0 bottom-0 h-36 sm:h-44 max-w-[55%] object-contain object-bottom pointer-events-none opacity-45 group-hover:opacity-85 transition-opacity scale-115 origin-bottom-right",
+    imageClass: "absolute right-0 bottom-0 h-32 sm:h-36 max-w-[40%] object-contain object-bottom pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity",
   },
 ];
 
-const setupGuides = [
+const guideHighlights = [
   {
-    number: "01",
-    title: "Script Hook RDR2 & ASI Loader",
-    desc: "Alexander Blade's library for executing C++ .asi scripts and trainers.",
+    title: "Script Hook RDR2 Setup",
+    desc: "Step-by-step guide to installing Alexander Blade's Script Hook and dinput8.dll ASI loader.",
     path: "/guide/scripthook",
-    tag: "Core Loader",
+    tag: "Essential Loader",
   },
   {
-    number: "02",
     title: "Lenny's Mod Loader (LML)",
-    desc: "Virtual file system for dynamic model, texture & meta replacements.",
+    desc: "How to install replace mods, game data overrides, and texture mods via Mod Manager.",
     path: "/guide/lml",
-    tag: "VFS Framework",
+    tag: "Asset Loader",
   },
   {
-    number: "03",
-    title: "RedM Server Resources",
-    desc: "Deploy custom lua scripts, fxmanifest files & VORP server resources.",
+    title: "RedM Server Setup",
+    desc: "Comprehensive starter guide for deploying custom RedM multiplayer servers.",
     path: "/guide/redm",
     tag: "Multiplayer",
   },
   {
-    number: "04",
-    title: "ReShade & Visual Shaders",
+    title: "ReShade Enhancement",
     desc: "Vulkan post-processing injector for ambient occlusion & color grading.",
     path: "/guide/reshade",
     tag: "Graphics",
@@ -119,12 +116,42 @@ const setupGuides = [
 ];
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "RDR2 Mods | Premier Red Dead Redemption 2 Mod Catalog" },
-      { name: "description", content: "Discover community-made scripts, trainers, single-player enhancements, and RedM mods for Red Dead Redemption 2." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "RDR2 Mods - Red Dead Redemption 2 Single Player & RedM Mods Catalog",
+      description: "Explore the ultimate hub for Red Dead Redemption 2 PC mods. Download Script Hook RDR2, Lenny Mod Loader (LML) packages, trainers, ReShade presets, and RedM server scripts.",
+      keywords: [
+        "RDR2 Mods",
+        "Red Dead Redemption 2 PC Mods",
+        "RDR2 Script Hook",
+        "Alexander Blade Script Hook",
+        "Lenny Mod Loader LML",
+        "RedM Server Scripts",
+        "RDR2 Trainers",
+        "RDR2 Graphics Mods",
+        "RDR2 Mod Manager",
+      ],
+      path: "/",
+      image: "/rdr2modslg.png",
+      jsonLd: [
+        SchemaOrg.website(),
+        SchemaOrg.organization(),
+        SchemaOrg.faqPage([
+          {
+            question: "How do I install mods in Red Dead Redemption 2 on PC?",
+            answer: "Most RDR2 single-player mods require Alexander Blade's Script Hook RDR2 (and dinput8.dll) to load ASI scripts, or Lenny's Mod Loader (LML) for replace mods and model modifications. Place ASI files directly in your RDR2 main directory and LML mods into the lml folder.",
+          },
+          {
+            question: "Is modding Red Dead Redemption 2 safe for Single Player?",
+            answer: "Yes, modding Red Dead Redemption 2 in single-player mode is widely practiced. However, you must remove all mod files before attempting to play Red Dead Online to prevent automatic ban enforcement by Rockstar Games.",
+          },
+          {
+            question: "What is RedM?",
+            answer: "RedM is a custom multiplayer modification framework for Red Dead Redemption 2 that allows players to join dedicated roleplay and custom multiplayer servers.",
+          },
+        ]),
+      ],
+    }),
   component: Index,
 });
 

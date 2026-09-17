@@ -2,14 +2,39 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/guide/reshade")({
-  head: () => ({
-    meta: [
-      { title: "ReShade & Visual Shaders Setup Guide | RDR2 Mods" },
-      { name: "description", content: "Learn how to install ReShade graphics suite, Vulkan API layer, and custom color presets for Red Dead Redemption 2." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "ReShade RDR2 Installation Guide - Vulkan Graphics & Color Grading",
+      description: "Learn how to install ReShade post-processing suite on Vulkan API for Red Dead Redemption 2, load custom shaders, ambient occlusion, and photorealistic presets.",
+      keywords: ["ReShade RDR2", "RDR2 Vulkan ReShade", "RDR2 Graphics Preset", "Photorealistic RDR2", "Ambient Occlusion RDR2"],
+      path: "/guide/reshade",
+      image: "/banner.png",
+      jsonLd: [
+        SchemaOrg.techArticle({
+          title: "ReShade RDR2 Setup Guide",
+          description: "Step-by-step tutorial on installing ReShade for Vulkan and configuring visual shaders in Red Dead Redemption 2.",
+          path: "/guide/reshade",
+        }),
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Guides", item: "/guide" },
+          { name: "ReShade Setup", item: "/guide/reshade" },
+        ]),
+        SchemaOrg.faqPage([
+          {
+            question: "Does ReShade work with Vulkan in Red Dead Redemption 2?",
+            answer: "Yes, modern versions of ReShade support Vulkan globally. During installation, select Vulkan as the rendering API for RDR2.exe.",
+          },
+          {
+            question: "Will ReShade impact FPS in RDR2?",
+            answer: "Light color grading presets have minimal performance impact (<2 FPS). Ray tracing, screen-space reflections, and heavy ambient occlusion shaders can impact frame rates on mid-range GPUs.",
+          },
+        ]),
+      ],
+    }),
   component: ReshadeGuidePage,
 });
 

@@ -16,14 +16,23 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import mods from "@/data/mods.json";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/activity")({
-  head: () => ({
-    meta: [
-      { title: "Community Activity | RDR2 Mods" },
-      { name: "description", content: "Recent mod uploads, star milestones, and community updates." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "RDR2 Mods Activity Feed - Recent Releases & Community Updates",
+      description: "Track the latest Red Dead Redemption 2 mod uploads, script updates, star milestones, and community contributions in real-time.",
+      keywords: ["RDR2 Mods Activity", "Latest RDR2 Releases", "RedM Script Updates"],
+      path: "/activity",
+      image: "/banner.png",
+      jsonLd: [
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Activity", item: "/activity" },
+        ]),
+      ],
+    }),
   component: ActivityPage,
 });
 

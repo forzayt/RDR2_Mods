@@ -2,14 +2,39 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { generateSeoMeta, SchemaOrg } from "@/lib/seo";
 
 export const Route = createFileRoute("/guide/redm")({
-  head: () => ({
-    meta: [
-      { title: "RedM Server Scripts & Resource Guide | RDR2 Mods" },
-      { name: "description", content: "Comprehensive setup instructions for RedM server resources, fxmanifest configuration, and server.cfg deployment." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "RedM Server Setup & Script Deployment Guide - RDR2 Multiplayer",
+      description: "Complete tutorial for setting up a custom RedM server, configuring server.cfg, writing fxmanifest.lua, and installing Lua resources.",
+      keywords: ["RedM Server Guide", "RedM Scripts", "fxmanifest.lua", "RedM Setup", "VORP Framework", "RSG Framework"],
+      path: "/guide/redm",
+      image: "/banner.png",
+      jsonLd: [
+        SchemaOrg.techArticle({
+          title: "RedM Server Setup & Script Deployment Guide",
+          description: "Tutorial for establishing a RedM server, deploying resources, and configuring server.cfg.",
+          path: "/guide/redm",
+        }),
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Guides", item: "/guide" },
+          { name: "RedM Setup", item: "/guide/redm" },
+        ]),
+        SchemaOrg.faqPage([
+          {
+            question: "What is RedM?",
+            answer: "RedM is a modification framework enabling custom multiplayer servers for Red Dead Redemption 2, allowing server hosters to run custom Lua scripts and roleplay game modes.",
+          },
+          {
+            question: "How do I install a RedM script?",
+            answer: "Place the script folder inside your RedM server's resources directory and add 'ensure resource_name' to your server.cfg file.",
+          },
+        ]),
+      ],
+    }),
   component: RedmGuidePage,
 });
 

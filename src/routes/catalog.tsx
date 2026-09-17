@@ -42,12 +42,21 @@ const catalogCategories = [
 ];
 
 export const Route = createFileRoute("/catalog")({
-  head: () => ({
-    meta: [
-      { title: "Mod Catalog | RDR2 Mods" },
-      { name: "description", content: "Browse, filter, and save the complete catalog of Red Dead Redemption 2 mods." },
-    ],
-  }),
+  head: () =>
+    generateSeoMeta({
+      title: "RDR2 Mods Catalog - Single Player Scripts, RedM & Loaders",
+      description: "Filter and explore Red Dead Redemption 2 single player scripts, ASI trainers, LML replacement files, ReShade presets, and RedM server tools.",
+      keywords: ["RDR2 Mod Catalog", "RDR2 Mods Download", "Red Dead Redemption 2 Mod List", "Script Hook Mods", "LML Mods Directory"],
+      path: "/catalog",
+      image: "/rdr2modslg.png",
+      jsonLd: [
+        SchemaOrg.dataCatalog(),
+        SchemaOrg.breadcrumb([
+          { name: "Home", item: "/" },
+          { name: "Catalog", item: "/catalog" },
+        ]),
+      ],
+    }),
   component: CatalogPage,
 });
 
