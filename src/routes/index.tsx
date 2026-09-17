@@ -114,16 +114,16 @@ function Index() {
         />
 
         <main className="mx-auto max-w-[1920px] px-4 pb-20 pt-5 sm:px-6 sm:pt-6">
-          <section className="rise relative min-h-[410px] overflow-hidden rounded-xl ring-1 ring-border sm:min-h-[420px]">
+          <section className="rise relative min-h-[460px] overflow-hidden rounded-3xl ring-1 ring-border shadow-2xl flex items-center justify-center text-center sm:min-h-[520px]">
             <video
-                ref={videoRef}
-                muted
-                loop
-                preload="auto"
-                playsInline
-                autoPlay
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              ref={videoRef}
+              muted
+              loop
+              preload="auto"
+              playsInline
+              autoPlay
+              className="absolute inset-0 h-full w-full object-cover scale-[1.02]"
+            />
             <button
               onClick={() => {
                 setMuted((m) => {
@@ -134,18 +134,27 @@ function Index() {
               }}
               aria-label={muted ? "Unmute video" : "Mute video"}
               title={muted ? "Unmute" : "Mute"}
-              className="absolute right-3 top-3 z-10 flex size-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-[background-color,transform] hover:bg-black/60 active:scale-[0.96]"
+              className="absolute right-4 top-4 z-20 flex size-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-all hover:bg-black/75 active:scale-[0.96]"
             >
               {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
             </button>
-            <div className="absolute inset-0 bg-gradient-to-t from-hero/80 via-hero/15 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:p-7">
-              <div className="max-w-2xl min-w-0">
-                <span className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase text-primary-foreground">Welcome</span>
-                <h1 className="mt-2 font-display text-5xl leading-none text-hero-foreground sm:text-6xl">RDR2 Mods</h1>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-hero-foreground/85 sm:text-base">Discover the best community-made mods for Red Dead Redemption 2. Browse, download, and enhance your frontier experience.</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/65 backdrop-blur-[1px]" />
+            
+            <div className="relative z-10 flex max-w-3xl flex-col items-center justify-center px-6 py-12 text-center">
+              <h1 className="font-display text-5xl leading-tight tracking-wide text-white sm:text-6xl md:text-7xl">
+                The Best Place for <span className="text-primary font-bold">RDR2 Mods</span>
+              </h1>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+                Discover community-created scripts, single-player enhancements, and RedM mods to elevate your Red Dead Redemption 2 experience.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <Button asChild size="default" className="rounded-full px-6 shadow-lg shadow-primary/25 active:scale-[0.96]">
+                  <a href="#catalog">Browse Catalog</a>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20 hover:text-white px-6 active:scale-[0.96]">
+                  <Link to="/upload">Upload Mod</Link>
+                </Button>
               </div>
-              <Button variant="paper" asChild><a href="#catalog">Browse mods</a></Button>
             </div>
           </section>
 
