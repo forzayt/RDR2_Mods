@@ -197,6 +197,11 @@ function Index() {
                         {starCounts[mod.url]}
                       </span>
                     )}
+                    {mod.tag && (
+                      <span className="absolute left-2 top-2 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary-foreground shadow-sm">
+                        {mod.tag}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-3 px-0.5">
                     <div className="flex items-center gap-2">

@@ -34,8 +34,15 @@ const validationLabels: Record<string, string> = {
   summary: "Short summary",
   description: "Description",
   repositoryUrl: "GitHub repository URL",
+  tag: "Tag",
   thumbnailDataUrl: "Thumbnail",
 };
+
+const tagOptions = [
+  { value: "", label: "Select a tag" },
+  { value: "redm", label: "RedM" },
+  { value: "sp", label: "Single Player" },
+];
 
 function getSubmissionErrorMessage(error: unknown) {
   if (!(error instanceof Error)) return "The submission could not be created.";
@@ -111,6 +118,7 @@ function UploadMod() {
     const summary = String(formData.get("summary") ?? "").trim();
     const description = String(formData.get("description") ?? "").trim();
     const repositoryUrl = String(formData.get("repositoryUrl") ?? "").trim();
+    const tag = String(formData.get("tag") ?? "").trim();
     const githubRepositoryPattern =
       /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?\/?$/;
 
@@ -149,6 +157,7 @@ function UploadMod() {
           summary,
           description,
           repositoryUrl,
+          tag,
           thumbnailDataUrl,
         },
       });
@@ -305,6 +314,30 @@ function UploadMod() {
                 <p className="text-xs text-muted-foreground">
                   Link directly to the repository—not a profile, release, branch, or file.
                 </p>
+              </div>
+
+              <div className="space-y-2 sm:col-span-2">
+                <Label>Tag</Label>
+                <div className="flex flex-wrap gap-3">
+                  {tagOptions
+                    .filter((opt) => opt.value !== "")
+                    .map((opt) => (
+                      <label
+                        key={opt.value}
+                        className="group flex cursor-pointer items-center gap-2 rounded-lg bg-background/55 px-4 py-2.5 ring-1 ring-border transition-[background-color,box-shadow] hover:bg-background has-[:checked]:bg-primary/10 has-[:checked]:ring-primary"
+                      >
+                        <input
+                          type="radio"
+                          name="tag"
+                          value={opt.value}
+                          required
+                          className="size-4 accent-primary"
+                        />
+                        <span className="text-sm font-medium">{opt.label}</span>
+                      </label>
+                    ))}
+                </div>
+                <p className="text-xs text-muted-foreground">Choose the category that best fits your mod.</p>
               </div>
             </div>
           </div>
