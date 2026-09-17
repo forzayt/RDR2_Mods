@@ -95,6 +95,7 @@ export function generateSeoMeta(options: SeoOptions) {
 
   const meta: Array<Record<string, any>> = [
     // Standard SEO Tags
+    { title: fullTitle },
     { name: "title", content: fullTitle },
     { name: "description", content: description },
     { name: "keywords", content: mergedKeywords },
