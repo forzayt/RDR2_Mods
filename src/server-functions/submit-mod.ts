@@ -5,6 +5,11 @@ const submissionSchema = z.object({
   title: z.string().trim().min(3).max(100),
   repositoryUrl: z.string().trim().url().max(300),
   thumbnailDataUrl: z.string().max(7_100_000),
+  tag: z.string().trim().optional(),
+  version: z.string().trim().optional(),
+  license: z.string().trim().optional(),
+  description: z.string().trim().optional(),
+  prerequisites: z.string().trim().optional(),
 });
 
 function parseGithubRepository(value: string) {
@@ -136,10 +141,17 @@ export const submitModIssue = createServerFn({ method: "POST" })
       "",
       `- **Title:** ${data.title}`,
       `- **Repository:** ${data.repositoryUrl}`,
+      `- **Category Tag:** ${data.tag || "Single Player"}`,
+      `- **Version:** ${data.version || "v1.0.0"}`,
+      `- **License:** ${data.license || "MIT / Open Source"}`,
+      `- **Prerequisites:** ${data.prerequisites || "Script Hook RDR2"}`,
       `- **Thumbnail:** ${thumbnailUrl}`,
       "",
+      "### Description & Installation Instructions",
+      data.description || "No additional description provided.",
+      "",
       "---",
-      "Submitted through the RDR2 Mods upload form.",
+      "Submitted through the RDR2 Mods upload portal.",
     ].join("\n");
 
     const issueResponse = await fetch(

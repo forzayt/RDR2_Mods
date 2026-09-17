@@ -156,9 +156,15 @@ function ContactPage() {
                 href="https://github.com/forzayt/RDR2_Mods/issues"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-3xl border border-border/80 bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
+                className="group relative block overflow-hidden rounded-3xl border border-border/80 bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.98]"
               >
-                <div className="flex items-center gap-3.5">
+                <img
+                  src="/RedDeadOnline_Artwork_BountyHunter_Expansion_Character_PNG_Transparent.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute right-0 bottom-0 h-20 sm:h-24 max-w-[35%] object-contain object-bottom pointer-events-none opacity-45 group-hover:opacity-85 transition-opacity duration-300"
+                />
+                <div className="relative z-10 flex items-center gap-3.5 max-w-[65%]">
                   <Github className="size-6 text-foreground shrink-0 group-hover:text-primary transition-colors" />
                   <div>
                     <h3 className="font-display text-xl group-hover:text-primary transition-colors">
@@ -171,9 +177,15 @@ function ContactPage() {
                 </div>
               </a>
 
-              <div className="rounded-3xl border border-border/80 bg-card p-6 shadow-sm">
-                <div className="flex items-center gap-3.5">
-                  <Mail className="size-6 text-foreground shrink-0" />
+              <div className="group relative overflow-hidden rounded-3xl border border-border/80 bg-card p-6 shadow-sm transition-all hover:border-primary/50">
+                <img
+                  src="/NicePng_red-beard-png_1934462.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute right-0 bottom-0 h-20 sm:h-24 max-w-[35%] object-contain object-bottom pointer-events-none opacity-45 group-hover:opacity-85 transition-opacity duration-300"
+                />
+                <div className="relative z-10 flex items-center gap-3.5 max-w-[65%]">
+                  <Mail className="size-6 text-foreground shrink-0 group-hover:text-primary transition-colors" />
                   <div>
                     <h3 className="font-display text-xl">Direct Email</h3>
                     <p className="text-xs text-muted-foreground">

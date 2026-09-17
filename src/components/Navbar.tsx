@@ -12,12 +12,12 @@ import {
   User,
   X,
   Menu,
-  Activity as ActivityIcon,
+  Shield,
+  Scale,
 } from "lucide-react";
 import { useState } from "react";
 
 import rdr2Logo from "@/assets/rdr2mods.png";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -65,115 +65,106 @@ export function Navbar({
 
           {/* Desktop Navigation Links */}
           <nav className="hidden items-center gap-1 md:flex lg:gap-1.5">
-            {/* Home Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button
-                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
-                    isActive("/") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
-                  }`}
-                >
-                  Home
-                  <ChevronDown className="size-3.5 opacity-70" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48 rounded-2xl shadow-xl">
-                <DropdownMenuItem asChild>
-                  <Link to="/" className="w-full cursor-pointer">
-                    <Home className="mr-2 size-4" />
-                    Overview
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
-                    <Compass className="mr-2 size-4" />
-                    Featured Mods
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Explore / Catalog Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button
-                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
-                    isActive("/catalog") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
-                  }`}
-                >
-                  Explore
-                  <ChevronDown className="size-3.5 opacity-70" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48 rounded-2xl shadow-xl">
-                <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
-                    <Compass className="mr-2 size-4" />
-                    All Catalog Mods
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
-                    RedM Scripts
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/catalog" className="w-full cursor-pointer">
-                    Single Player
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Activity Link */}
+            {/* Home Link */}
             <Link
-              to="/activity"
+              to="/"
               className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
-                isActive("/activity") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
+                isActive("/") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
               }`}
             >
-              Activity
+              Home
             </Link>
 
-            {/* Pages Dropdown */}
+            {/* Catalog Link */}
+            <Link
+              to="/catalog"
+              className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
+                isActive("/catalog") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
+              }`}
+            >
+              Catalog
+            </Link>
+
+            {/* Setup Guide Link */}
+            <Link
+              to="/guide"
+              className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all hover:bg-accent ${
+                isActive("/guide") ? "text-primary font-semibold" : "text-foreground/80 hover:text-foreground"
+              }`}
+            >
+              Setup Guide
+            </Link>
+
+            {/* Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/80 transition-all hover:bg-accent hover:text-foreground">
-                  Pages
+                  Categories
                   <ChevronDown className="size-3.5 opacity-70" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48 rounded-2xl shadow-xl">
+              <DropdownMenuContent align="start" className="w-52 rounded-2xl shadow-xl">
                 <DropdownMenuItem asChild>
                   <Link to="/catalog" className="w-full cursor-pointer">
-                    <Compass className="mr-2 size-4" />
-                    Catalog Directory
+                    Single Player (ASI/LML)
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/upload" className="w-full cursor-pointer">
-                    <Upload className="mr-2 size-4" />
-                    Upload Mod
+                  <Link to="/catalog" className="w-full cursor-pointer">
+                    RedM Server Scripts
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/contact" className="w-full cursor-pointer">
-                    <MessageSquare className="mr-2 size-4" />
-                    Contact & FAQ
+                  <Link to="/catalog" className="w-full cursor-pointer">
+                    Graphics & Reshade
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <a
-                    href="https://github.com/forzayt/RDR2_Mods"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-full cursor-pointer"
-                  >
+                  <Link to="/catalog" className="w-full cursor-pointer">
+                    Outfits & Character
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Legal & Docs Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/80 transition-all hover:bg-accent hover:text-foreground">
+                  Legal
+                  <ChevronDown className="size-3.5 opacity-70" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-52 rounded-2xl shadow-xl">
+                <DropdownMenuItem asChild>
+                  <Link to="/terms" className="w-full cursor-pointer">
+                    <Scale className="mr-2 size-4" />
+                    Terms of Service
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/privacy" className="w-full cursor-pointer">
+                    <Shield className="mr-2 size-4" />
+                    Privacy Policy
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/guidelines" className="w-full cursor-pointer">
                     <FileText className="mr-2 size-4" />
-                    GitHub Repo
-                  </a>
+                    Community Guidelines
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/dmca" className="w-full cursor-pointer">
+                    <FileText className="mr-2 size-4" />
+                    DMCA & IP Policy
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/license" className="w-full cursor-pointer">
+                    <FileText className="mr-2 size-4" />
+                    Open Source & License
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -251,43 +242,6 @@ export function Navbar({
             <span>Upload</span>
           </Link>
 
-          {/* User Profile Avatar */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                className="flex items-center justify-center rounded-full ring-2 ring-border/60 transition-all hover:ring-primary focus:outline-none active:scale-[0.96]"
-                aria-label="User profile"
-              >
-                <Avatar className="size-8 sm:size-9">
-                  <AvatarImage
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                    alt="User Avatar"
-                  />
-                  <AvatarFallback className="bg-primary/10 text-primary">
-                    <User className="size-4" />
-                  </AvatarFallback>
-                </Avatar>
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48 rounded-2xl shadow-xl">
-              <div className="px-3 py-2">
-                <p className="text-sm font-semibold">Arthur Morgan</p>
-                <p className="text-xs text-muted-foreground">Outlaw & Modder</p>
-              </div>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/upload" className="cursor-pointer">
-                  My Uploads
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="https://github.com/forzayt/RDR2_Mods" target="_blank" rel="noreferrer" className="cursor-pointer">
-                  Community Profile
-                </a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -318,14 +272,6 @@ export function Navbar({
             >
               <Compass className="size-4" />
               Catalog & Mods
-            </Link>
-            <Link
-              to="/activity"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 text-sm font-medium hover:bg-accent"
-            >
-              <ActivityIcon className="size-4" />
-              Activity Feed
             </Link>
             <Link
               to="/upload"

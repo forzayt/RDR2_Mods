@@ -13,7 +13,17 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DmcaRouteImport } from './routes/dmca'
+import { Route as GuidelinesRouteImport } from './routes/guidelines'
+import { Route as LicenseRouteImport } from './routes/license'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UploadRouteImport } from './routes/upload'
+import { Route as GuideIndexRouteImport } from './routes/guide/index'
+import { Route as GuideLmlRouteImport } from './routes/guide/lml'
+import { Route as GuideRedmRouteImport } from './routes/guide/redm'
+import { Route as GuideReshadeRouteImport } from './routes/guide/reshade'
+import { Route as GuideScripthookRouteImport } from './routes/guide/scripthook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +45,59 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DmcaRoute = DmcaRouteImport.update({
+  id: '/dmca',
+  path: '/dmca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidelinesRoute = GuidelinesRouteImport.update({
+  id: '/guidelines',
+  path: '/guidelines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LicenseRoute = LicenseRouteImport.update({
+  id: '/license',
+  path: '/license',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UploadRoute = UploadRouteImport.update({
   id: '/upload',
   path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideIndexRoute = GuideIndexRouteImport.update({
+  id: '/guide/',
+  path: '/guide/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideLmlRoute = GuideLmlRouteImport.update({
+  id: '/guide/lml',
+  path: '/guide/lml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRedmRoute = GuideRedmRouteImport.update({
+  id: '/guide/redm',
+  path: '/guide/redm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideReshadeRoute = GuideReshadeRouteImport.update({
+  id: '/guide/reshade',
+  path: '/guide/reshade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideScripthookRoute = GuideScripthookRouteImport.update({
+  id: '/guide/scripthook',
+  path: '/guide/scripthook',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,14 +106,34 @@ export interface FileRoutesByFullPath {
   '/activity': typeof ActivityRoute
   '/catalog': typeof CatalogRoute
   '/contact': typeof ContactRoute
+  '/dmca': typeof DmcaRoute
+  '/guidelines': typeof GuidelinesRoute
+  '/license': typeof LicenseRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/upload': typeof UploadRoute
+  '/guide/lml': typeof GuideLmlRoute
+  '/guide/redm': typeof GuideRedmRoute
+  '/guide/reshade': typeof GuideReshadeRoute
+  '/guide/scripthook': typeof GuideScripthookRoute
+  '/guide/': typeof GuideIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
   '/catalog': typeof CatalogRoute
   '/contact': typeof ContactRoute
+  '/dmca': typeof DmcaRoute
+  '/guidelines': typeof GuidelinesRoute
+  '/license': typeof LicenseRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/upload': typeof UploadRoute
+  '/guide/lml': typeof GuideLmlRoute
+  '/guide/redm': typeof GuideRedmRoute
+  '/guide/reshade': typeof GuideReshadeRoute
+  '/guide/scripthook': typeof GuideScripthookRoute
+  '/guide': typeof GuideIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +141,70 @@ export interface FileRoutesById {
   '/activity': typeof ActivityRoute
   '/catalog': typeof CatalogRoute
   '/contact': typeof ContactRoute
+  '/dmca': typeof DmcaRoute
+  '/guidelines': typeof GuidelinesRoute
+  '/license': typeof LicenseRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/upload': typeof UploadRoute
+  '/guide/lml': typeof GuideLmlRoute
+  '/guide/redm': typeof GuideRedmRoute
+  '/guide/reshade': typeof GuideReshadeRoute
+  '/guide/scripthook': typeof GuideScripthookRoute
+  '/guide/': typeof GuideIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/activity' | '/catalog' | '/contact' | '/upload'
+  fullPaths:
+    | '/'
+    | '/activity'
+    | '/catalog'
+    | '/contact'
+    | '/dmca'
+    | '/guidelines'
+    | '/license'
+    | '/privacy'
+    | '/terms'
+    | '/upload'
+    | '/guide/lml'
+    | '/guide/redm'
+    | '/guide/reshade'
+    | '/guide/scripthook'
+    | '/guide/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/activity' | '/catalog' | '/contact' | '/upload'
-  id: '__root__' | '/' | '/activity' | '/catalog' | '/contact' | '/upload'
+  to:
+    | '/'
+    | '/activity'
+    | '/catalog'
+    | '/contact'
+    | '/dmca'
+    | '/guidelines'
+    | '/license'
+    | '/privacy'
+    | '/terms'
+    | '/upload'
+    | '/guide/lml'
+    | '/guide/redm'
+    | '/guide/reshade'
+    | '/guide/scripthook'
+    | '/guide'
+  id:
+    | '__root__'
+    | '/'
+    | '/activity'
+    | '/catalog'
+    | '/contact'
+    | '/dmca'
+    | '/guidelines'
+    | '/license'
+    | '/privacy'
+    | '/terms'
+    | '/upload'
+    | '/guide/lml'
+    | '/guide/redm'
+    | '/guide/reshade'
+    | '/guide/scripthook'
+    | '/guide/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +212,17 @@ export interface RootRouteChildren {
   ActivityRoute: typeof ActivityRoute
   CatalogRoute: typeof CatalogRoute
   ContactRoute: typeof ContactRoute
+  DmcaRoute: typeof DmcaRoute
+  GuidelinesRoute: typeof GuidelinesRoute
+  LicenseRoute: typeof LicenseRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   UploadRoute: typeof UploadRoute
+  GuideLmlRoute: typeof GuideLmlRoute
+  GuideRedmRoute: typeof GuideRedmRoute
+  GuideReshadeRoute: typeof GuideReshadeRoute
+  GuideScripthookRoute: typeof GuideScripthookRoute
+  GuideIndexRoute: typeof GuideIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +255,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dmca': {
+      id: '/dmca'
+      path: '/dmca'
+      fullPath: '/dmca'
+      preLoaderRoute: typeof DmcaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guidelines': {
+      id: '/guidelines'
+      path: '/guidelines'
+      fullPath: '/guidelines'
+      preLoaderRoute: typeof GuidelinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/license': {
+      id: '/license'
+      path: '/license'
+      fullPath: '/license'
+      preLoaderRoute: typeof LicenseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upload': {
       id: '/upload'
       path: '/upload'
       fullPath: '/upload'
       preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide/': {
+      id: '/guide/'
+      path: '/guide'
+      fullPath: '/guide/'
+      preLoaderRoute: typeof GuideIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide/lml': {
+      id: '/guide/lml'
+      path: '/guide/lml'
+      fullPath: '/guide/lml'
+      preLoaderRoute: typeof GuideLmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide/redm': {
+      id: '/guide/redm'
+      path: '/guide/redm'
+      fullPath: '/guide/redm'
+      preLoaderRoute: typeof GuideRedmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide/reshade': {
+      id: '/guide/reshade'
+      path: '/guide/reshade'
+      fullPath: '/guide/reshade'
+      preLoaderRoute: typeof GuideReshadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide/scripthook': {
+      id: '/guide/scripthook'
+      path: '/guide/scripthook'
+      fullPath: '/guide/scripthook'
+      preLoaderRoute: typeof GuideScripthookRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -124,7 +340,17 @@ const rootRouteChildren: RootRouteChildren = {
   ActivityRoute: ActivityRoute,
   CatalogRoute: CatalogRoute,
   ContactRoute: ContactRoute,
+  DmcaRoute: DmcaRoute,
+  GuidelinesRoute: GuidelinesRoute,
+  LicenseRoute: LicenseRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   UploadRoute: UploadRoute,
+  GuideLmlRoute: GuideLmlRoute,
+  GuideRedmRoute: GuideRedmRoute,
+  GuideReshadeRoute: GuideReshadeRoute,
+  GuideScripthookRoute: GuideScripthookRoute,
+  GuideIndexRoute: GuideIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

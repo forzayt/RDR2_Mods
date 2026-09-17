@@ -32,8 +32,8 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/activity" className="text-muted-foreground hover:text-primary transition-colors">
-                    Activity Feed
+                  <Link to="/guide" className="text-muted-foreground hover:text-primary transition-colors">
+                    Setup Guide
                   </Link>
                 </li>
               </ul>
@@ -69,10 +69,29 @@ export function Footer() {
               <h3 className="font-display text-base tracking-wide text-foreground uppercase">Legal</h3>
               <ul className="mt-3 space-y-2 text-sm font-body">
                 <li>
-                  <span className="text-muted-foreground">Community Guidelines</span>
+                  <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                    Terms of Service
+                  </Link>
                 </li>
                 <li>
-                  <span className="text-muted-foreground">Open Source License</span>
+                  <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/guidelines" className="text-muted-foreground hover:text-primary transition-colors">
+                    Community Guidelines
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dmca" className="text-muted-foreground hover:text-primary transition-colors">
+                    DMCA & IP Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/license" className="text-muted-foreground hover:text-primary transition-colors">
+                    Open Source & License
+                  </Link>
                 </li>
               </ul>
             </div>

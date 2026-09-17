@@ -169,6 +169,14 @@
   animation: rise 0.6s cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise { animation: none; }
 }
