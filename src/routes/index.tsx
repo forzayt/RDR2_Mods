@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ExternalLink, Moon, Search, Sun, Upload } from "lucide-react";
+import { Moon, Search, Sun, Upload } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import featuredImage from "@/assets/featured-ridge.jpg";
@@ -118,27 +118,26 @@ function Index() {
                   </div>
                   <div className="mt-3 px-0.5">
                     <div className="flex items-center gap-2">
-                      <h2 className="truncate font-display text-2xl text-foreground">{mod.title}</h2>
-                      <ExternalLink className="size-3.5 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                      <h2 className="min-w-0 truncate font-display text-2xl text-foreground">{mod.title}</h2>
+                      {(() => {
+                        const user = getGitHubUser(mod.url);
+                        if (!user) return null;
+                        return (
+                          <div className="ml-auto flex shrink-0 items-center gap-1.5">
+                            <img
+                              src={`https://github.com/${user}.png?size=40`}
+                              alt={user}
+                              width={20}
+                              height={20}
+                              loading="lazy"
+                              className="size-5 rounded-full ring-1 ring-border"
+                            />
+                            <span className="font-cond text-xs text-muted-foreground">@{user}</span>
+                          </div>
+                        );
+                      })()}
                     </div>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{mod.summary}</p>
-                    {(() => {
-                      const user = getGitHubUser(mod.url);
-                      if (!user) return null;
-                      return (
-                        <div className="mt-2 flex items-center gap-2">
-                          <img
-                            src={`https://github.com/${user}.png?size=40`}
-                            alt={user}
-                            width={20}
-                            height={20}
-                            loading="lazy"
-                            className="size-5 rounded-full ring-1 ring-border"
-                          />
-                          <span className="truncate font-cond text-xs text-muted-foreground">@{user}</span>
-                        </div>
-                      );
-                    })()}
                     <div className="mt-2 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                   </div>
                 </a>
