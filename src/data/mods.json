@@ -1,12 +1,80 @@
 [
 
+
+  {
+    "title": "Moro Race",
+    "tag":"redm",
+    "url": "https://github.com/morojgovany/moro_race",
+    "thumbnail": ""
+  },  
+
+
+  {
+    "title": "Devchacha Weed",
+    "tag":"redm",
+    "url": "https://github.com/Devchacha01/devchacha-weed",
+    "thumbnail": ""
+  },  
+
+
+
+  {
+    "title": "Devchacha Gunsmith",
+    "tag":"redm",
+    "url": "https://github.com/Devchacha01/devchacha-gunsmith",
+    "thumbnail": "https://github.com/Devchacha01/devchacha-gunsmith/raw/main/img/banner.jpg"
+  },  
+
+
+
+
+
+
+  {
+    "title": "BCC Robbery",
+    "tag":"redm",
+    "url": "https://github.com/BryceCanyonCounty/bcc-robbery",
+    "thumbnail": ""
+  },  
+
+
+  {
+    "title": "BLN Free Maps",
+    "tag":"redm",
+    "url": "https://github.com/blnStudio/RedM-Free-Maps",
+    "thumbnail": "https://github.com/blnStudio/RedM-Free-Maps/raw/main/ValentineEnhanced/.github/assets/img3.png"
+  },  
+
+
+  {
+    "title": "BLN Belt Lasso",
+    "tag":"redm",
+    "url": "https://github.com/blnStudio/bln_belt_lasso",
+    "thumbnail": "https://github.com/blnStudio/bln_belt_lasso/raw/main/.github/assets/banner.png"
+  },  
+
+
+
+  {
+    "title": "BLN Horse Shouts",
+    "tag":"redm",
+    "url": "https://github.com/blnStudio/bln_horse_shouts",
+    "thumbnail": "https://github.com/blnStudio/bln_horse_shouts/raw/main/.github/assets/banner.png"
+  },  
+
+
   {
     "title": "BLN Notify",
     "tag":"redm",
     "url": "https://github.com/blnStudio/bln_notify",
     "thumbnail": "https://github.com/blnStudio/bln_notify/raw/main/.github/assets/banner.png"
   },
-
+  {
+    "title": "BLN Multi-coords",
+    "tag":"redm",
+    "url": "https://github.com/blnStudio/bln_multicoords",
+    "thumbnail": "https://github.com/blnStudio/bln_multicoords/raw/main/.github/assets/banner.png"
+  },
   {
     "title": "BLN Loot Hunter",
     "tag":"redm",
