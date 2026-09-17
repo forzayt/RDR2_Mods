@@ -1,6 +1,12 @@
 [
 
   {
+    "title": "BCC Rewards",
+    "tag":"redm",
+    "url": "https://github.com/BryceCanyonCounty/bcc-rewards",
+    "thumbnail": ""
+  },
+  {
     "title": "BCC ColorMap",
     "tag":"redm",
     "url": "https://github.com/BryceCanyonCounty/bcc-colormap",
