@@ -70,7 +70,7 @@ function Index() {
   return (
     <div className={dark ? "dark" : ""}>
       <div className="min-h-screen bg-background font-body text-foreground antialiased transition-colors">
-        <header className="sticky top-0 z-30 border-b border-border bg-surface-glass backdrop-blur-xl">
+        <header className="sticky top-0 z-30 mx-4 rounded-b-xl border-b border-border bg-surface-glass backdrop-blur-xl sm:mx-6">
           <div className="mx-auto grid h-16 max-w-[1920px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:flex sm:px-6">
             <a href="#catalog" className="font-display text-2xl text-foreground">
               RDR2<span className="text-primary">·</span>Mods
