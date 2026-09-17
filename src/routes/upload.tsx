@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, Check, ExternalLink, Github, ImagePlus, LoaderCircle, Upload } from "lucide-react";
-import { type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +26,35 @@ function UploadMod() {
   const [formError, setFormError] = useState("");
   const [issueUrl, setIssueUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [thumbnailDataUrl, setThumbnailDataUrl] = useState("");
+  const [thumbnailName, setThumbnailName] = useState("");
+
+  const handleThumbnailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    setThumbnailDataUrl("");
+    setThumbnailName("");
+    setFormError("");
+
+    if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      setFormError("Upload a JPG, PNG, or WebP thumbnail.");
+      event.target.value = "";
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setFormError("The thumbnail must be smaller than 5 MB.");
+      event.target.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setThumbnailDataUrl(String(reader.result));
+      setThumbnailName(file.name);
+    };
+    reader.onerror = () => setFormError("The thumbnail could not be read. Choose another image.");
+    reader.readAsDataURL(file);
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,7 +64,6 @@ function UploadMod() {
 
     const formData = new FormData(event.currentTarget);
     const repositoryUrl = String(formData.get("repositoryUrl") ?? "").trim();
-    const thumbnailUrl = String(formData.get("thumbnailUrl") ?? "").trim();
     const githubRepositoryPattern = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?\/?$/;
 
     if (!githubRepositoryPattern.test(repositoryUrl)) {
@@ -43,8 +71,8 @@ function UploadMod() {
       return;
     }
 
-    if (!thumbnailUrl.startsWith("https://")) {
-      setFormError("Enter a public HTTPS URL for the thumbnail image.");
+    if (!thumbnailDataUrl) {
+      setFormError("Choose a thumbnail image for your mod.");
       return;
     }
 
@@ -56,7 +84,7 @@ function UploadMod() {
           summary: String(formData.get("summary") ?? ""),
           description: String(formData.get("description") ?? ""),
           repositoryUrl,
-          thumbnailUrl,
+          thumbnailDataUrl,
         },
       });
       setIssueUrl(result.issueUrl);
@@ -151,17 +179,19 @@ function UploadMod() {
           <aside className="space-y-5 rounded-xl bg-surface-glass p-5 shadow-[0_12px_40px_oklch(0_0_0/0.06)] ring-1 ring-border">
             <div>
               <h2 className="font-display text-2xl">Thumbnail</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Add a public image shown on your mod card.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Upload the image shown on your mod card.</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="thumbnailUrl">Public image URL</Label>
-              <div className="relative">
-                <ImagePlus className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
-                <Input id="thumbnailUrl" name="thumbnailUrl" type="url" required inputMode="url" placeholder="https://example.com/mod-thumbnail.jpg" className={`${fieldClass} pl-10`} />
-              </div>
-              <p className="text-xs leading-relaxed text-muted-foreground">Use a public HTTPS image URL. It will be included in the review issue.</p>
-            </div>
+            <label className="group flex cursor-pointer flex-col items-center rounded-lg bg-background/55 px-4 py-6 text-center ring-1 ring-border transition-[background-color,box-shadow,transform] hover:bg-background focus-within:ring-2 focus-within:ring-ring active:scale-[0.96]">
+              {thumbnailDataUrl ? (
+                <img src={thumbnailDataUrl} alt="Selected thumbnail preview" className="aspect-[4/3] w-full rounded-md object-cover outline outline-1 outline-black/10 dark:outline-white/10" />
+              ) : (
+                <ImagePlus className="size-7 text-primary" aria-hidden="true" />
+              )}
+              <span className="mt-3 max-w-full truncate text-sm font-semibold">{thumbnailName || "Choose thumbnail"}</span>
+              <span className="mt-1 text-xs text-muted-foreground">JPG, PNG or WebP · max 5 MB</span>
+              <input type="file" name="thumbnail" required accept="image/jpeg,image/png,image/webp" onChange={handleThumbnailChange} className="sr-only" />
+            </label>
 
             <Button type="submit" disabled={isSubmitting} className="w-full transition-[color,background-color,transform] active:scale-[0.96]">
               {isSubmitting ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : <Upload className="size-4" aria-hidden="true" />}
